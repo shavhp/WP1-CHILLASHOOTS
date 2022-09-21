@@ -2,7 +2,7 @@ import pygame
 
 pygame.init()
 GAME_SPEED = 60
-LOGO_SPEED = 33
+LOGO_SPEED = 3
 
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 768
@@ -11,7 +11,6 @@ SCREEN_HEIGHT = 768
 BACKGROUND_COLOR = (0, 0, 0)
 pygame.display.set_caption("Werkplaats 1: PyGame")
 clock = pygame.time.Clock()
-
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 
