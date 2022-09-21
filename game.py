@@ -2,7 +2,7 @@ import pygame
 
 pygame.init()
 GAME_SPEED = 60
-LOGO_SPEED = 3
+LOGO_SPEED = 33
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 768
 # Kleuren worden aangeven met een tuple van 3 getallen - rood, groen, blauw - tussen 0 en 255.
