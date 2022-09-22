@@ -8,3 +8,6 @@ pygame.init()
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 768
 BACKGROUND_COLOR = (85, 180, 176)
+
+# The name that will be displayed on the pygame
+pygame.display.set_caption("Werkplaats 1: PyGame")
