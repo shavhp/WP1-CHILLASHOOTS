@@ -7,7 +7,10 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1024, 768))
 
 # Title and Icon
+# Reminder to attribute creator of icon in credit section of game
 pygame.display.set_caption("ChillaShoots")
+icon = pygame.image.load('chinchilla_icon_sha.png')
+pygame.display.set_icon(icon)
 
 # Main event loop
 running = True
