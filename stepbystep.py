@@ -25,6 +25,10 @@ def quit_game_requested():
 while not quit_game_requested():
     # The canvas gets filled with whatever the background color is (currently blue)
     canvas.fill(BACKGROUND_COLOR)
+
+    # Despite what the "flip" part suggests, it's not actually flipping the display
+    # It is to actually update the display to have a (currently blue) background
     pygame.display.flip()
 
+# When the program quits, this text will be printed before termination
 print("Exit")
