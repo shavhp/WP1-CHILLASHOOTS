@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 # Create screen
-SCREEN = pygame.display.set_mode((1024, 768))
+SCREEN_SIZE = pygame.display.set_mode((1024, 768))
 
 # Title and Icon
 # Reminder to attribute creator of icon in credit section of game
