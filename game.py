@@ -11,7 +11,7 @@ SCREEN_HEIGHT = 768
 BACKGROUND_COLOR = (0, 0, 0)
 pygame.display.set_caption("Werkplaats 1: PyGame")
 clock = pygame.time.Clock()
-Adding_Text= "Hello"
+Adding_Text= "Hellooo"
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 
