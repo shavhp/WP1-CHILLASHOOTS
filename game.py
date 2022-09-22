@@ -2,7 +2,7 @@ import pygame
 
 pygame.init()
 GAME_SPEED = 60
-LOGO_SPEED = 10
+LOGO_SPEED = 30
 
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 768
