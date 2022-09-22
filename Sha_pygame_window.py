@@ -6,6 +6,9 @@ pygame.init()
 # Create screen
 SCREEN = pygame.display.set_mode((1024, 768))
 
+# Title and Icon
+pygame.display.set_caption("ChillaShoots")
+
 # Main event loop
 running = True
 while running:
