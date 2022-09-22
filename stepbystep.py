@@ -14,14 +14,25 @@ pygame.display.set_caption("Test")
 
 
 def quit_game_requested():
+    # Boolean variable determining if the program may keep running
     halting = False
     for event in pygame.event.get():
+        # If the user quits the game, the "halting" variable boolean gets set to "True" and the program quits
         if event.type == pygame.QUIT:
             halting = True
             break
+        # Event checking if you press a certain key
+        elif event.type == pygame.KEYDOWN:
+            # if the user presses the Escape key, it quits the program like the "QUIT" event above
+            event.key = pygame.K_ESCAPE
+            halting = True
+            break
+
+    # Loops back to the "halting" variable
     return halting
 
 
+# Create a lasting window while the previous function is still running
 while not quit_game_requested():
     # The canvas gets filled with whatever the background color is (currently blue)
     canvas.fill(BACKGROUND_COLOR)
@@ -29,6 +40,7 @@ while not quit_game_requested():
     # Despite what the "flip" part suggests, it's not actually flipping the display
     # It is to actually update the display to have a (currently blue) background
     pygame.display.flip()
+
 
 # When the program quits, this text will be printed before termination
 print("Exit")
