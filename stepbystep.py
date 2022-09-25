@@ -12,7 +12,15 @@ canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 # This sets the window bar text
 pygame.display.set_caption("Test")
 
+# Object position variable
+obj_x = 200
+obj_y = 200
 
+# Object size variable
+obj_width = 300
+obj_height = 100
+
+# The game looping until the program is exited
 def quit_game_requested():
     # Boolean variable determining if the program may keep running
     halting = False
@@ -32,14 +40,20 @@ def quit_game_requested():
     return halting
 
 
-# Create a lasting window while the previous function is still running
+# Create a window while the previous function is still running
 while not quit_game_requested():
     # The canvas gets filled with whatever the background color is (currently blue)
     canvas.fill(BACKGROUND_COLOR)
 
+    # Draw a object
+    pygame.draw.rect(canvas, (255, 255, 0), (obj_x, obj_y, obj_width, obj_height))
+
     # Despite what the "flip" part suggests, it's not actually flipping the display
     # It is to actually update the display to have a (currently blue) background
+    # Items that are drawn must be before this command in order to show up on the display
     pygame.display.flip()
+
+
 
 
 # When the program quits, this text will be printed before termination
