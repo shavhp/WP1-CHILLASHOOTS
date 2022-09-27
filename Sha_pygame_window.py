@@ -37,6 +37,17 @@ while running:
             running = False
 
         # Checks whether keystroke is left or right when pressed
+        '''
+        
+        I have to fix this if-statement, because the screen closes
+        
+        everytime I press an arrow key. I don't get to see the print
+        
+        that says I have pressed left or right arrow or have let key
+        
+        back up.
+        
+        '''
         if event.type == pygame.KEYDOWN:
             print("A keystroke")
             if event.key == pygame.K_LEFT:
