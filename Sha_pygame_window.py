@@ -20,8 +20,20 @@ player_Y_axis = 320
 def player():
     SCREEN.blit(player_img, (player_X_axis, player_Y_axis))
 
-# Main event loop
-# This loop contains everything that has to stay consistent, infinitely
+# Start screen
+def game_intro():
+    intro = True
+
+    while intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        SCREEN.fill(28, 79, 66)
+
+
+# Main event loop, contains everything that has to stay infinitely consistent
 running = True
 while running:
     for event in pygame.event.get():
