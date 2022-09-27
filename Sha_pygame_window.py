@@ -13,8 +13,8 @@ pygame.display.set_icon(icon)
 
 # Player sprite
 player_img = pygame.image.load("chinchilla_sprite_sha.png")
-player_X_axis = 200
-player_Y_axis = 300
+player_X_axis = 50
+player_Y_axis = 320
 
 # Creates function for player to draw image of sprite icon
 def player():
