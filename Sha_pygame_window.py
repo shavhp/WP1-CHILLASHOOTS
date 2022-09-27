@@ -13,16 +13,21 @@ pygame.display.set_icon(icon)
 
 # Player sprite
 player_img = pygame.image.load("chinchilla_sprite_sha.png")
-player_X_axis = 50
+player_X_axis = 25
 player_Y_axis = 320
 
 # Creates function for player to draw image of sprite icon
-def player():
-    SCREEN.blit(player_img, (player_X_axis, player_Y_axis))
+def player(x,y):
+    SCREEN.blit(player_img, (x, y))
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
 while running:
+
+    # Adds background color to screen
+    # Gets drawn first
+    SCREEN.fill((28, 79, 66))
+
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             event.key = pygame.K_ESCAPE
@@ -30,9 +35,7 @@ while running:
 
         elif event.type == pygame.QUIT:
             running = False
-# Adds background color to screen
-# Gets drawn first
-    SCREEN.fill((28, 79, 66))
 
-    player()
+
+    player(player_X_axis, player_Y_axis)
     pygame.display.update()
