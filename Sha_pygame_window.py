@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 # Create screen
-SCREEN = pygame.display.set_mode((1024, 768))
+SCREEN = pygame.display.set_mode((800, 600))
 
 # Title and Icon
 pygame.display.set_caption("ChillaShoots")
