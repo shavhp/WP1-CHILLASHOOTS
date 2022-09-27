@@ -4,13 +4,21 @@ import pygame
 pygame.init()
 
 # Create screen
-SCREEN_SIZE = pygame.display.set_mode((1024, 768))
+SCREEN = pygame.display.set_mode((1024, 768))
 
 # Title and Icon
-
 pygame.display.set_caption("ChillaShoots")
 icon = pygame.image.load('chinchilla_icon_sha.png')
 pygame.display.set_icon(icon)
+
+# Player sprite
+player_img = pygame.image.load("chinchilla_sprite_sha.png")
+player_X_axis = 200
+player_Y_axis = 300
+
+# Creates function for player to draw image of sprite icon
+def player():
+    SCREEN.blit(player_img, (player_X_axis, player_Y_axis))
 
 # Main event loop
 # This loop contains everything that has to stay consistent, infinitely
@@ -24,5 +32,8 @@ while running:
         elif event.type == pygame.QUIT:
             running = False
 # Adds background color to screen
-    SCREEN_SIZE.fill((28, 79, 66))
+# Gets drawn first
+    SCREEN.fill((28, 79, 66))
+
+    player()
     pygame.display.update()
