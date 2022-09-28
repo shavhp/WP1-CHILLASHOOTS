@@ -29,14 +29,14 @@ while running:
     SCREEN.fill((28, 79, 66))
 
     for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            event.key = pygame.K_ESCAPE
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             running = False
 
         if event.type == pygame.QUIT:
             running = False
 
         # Checks whether keystroke is left or right when pressed
+
         '''
         
         I have to fix this if-statement, because the screen closes
@@ -48,6 +48,7 @@ while running:
         back up.
         
         '''
+
         if event.type == pygame.KEYDOWN:
             print("A keystroke")
             if event.key == pygame.K_LEFT:
