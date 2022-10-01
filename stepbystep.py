@@ -1,5 +1,6 @@
-# Importing and initializing PyGame resources
+# Importing and initializing PyGame resources and a randomizer module
 import pygame
+import random
 pygame.init()
 
 # Screen, background and canvas variables
@@ -10,15 +11,16 @@ BACKGROUND_COLOR = (0, 0, 255)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # This sets the window bar text
-pygame.display.set_caption("Test")
+pygame.display.set_caption("Test with randomizer")
 
-# Object position variable
-obj_x = 200
-obj_y = 200
+# Test rectangle position variable, now randomized on each run
+obj_x = random.randint(100, 900)
+obj_y = random.randint(100, 600)
 
-# Object size variable
-obj_width = 300
-obj_height = 100
+# Test rectangle size variable, now randomized too
+obj_width = random.randint(100, 900)
+obj_height = random.randint(100, 600)
+
 
 # The game looping until the program is exited
 def quit_game_requested():
@@ -54,7 +56,5 @@ while not quit_game_requested():
     pygame.display.flip()
 
 
-
-
 # When the program quits, this text will be printed before termination
-print("Exit")
+print("Program Terminated")
