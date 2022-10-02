@@ -16,7 +16,7 @@ pygame.display.set_caption("Test enemy")
 # Enemy variables
 enemy_img = pygame.image.load('images/test.png')
 enemy_x = random.randint(1000, 1024)
-enemy_y = random.randint(100, 800)
+enemy_y = random.randint(0, 704)
 enemy_x_speed = random.randint(1, 2)
 
 # The game looping until the program is exited
