@@ -15,9 +15,9 @@ pygame.display.set_caption("Test enemy")
 
 # Enemy variables
 enemy_img = pygame.image.load('images/test.png')
-enemy_x = random.randint(300, 800)
+enemy_x = random.randint(1000, 1024)
 enemy_y = random.randint(100, 800)
-
+enemy_x_speed = random.randint(1, 2)
 
 # The game looping until the program is exited
 def quit_game_requested():
@@ -46,6 +46,9 @@ while not quit_game_requested():
 
     # Spawn the test enemy, it will be random each time the application starts
     canvas.blit(enemy_img, (enemy_x, enemy_y))
+    if enemy_x != -64:
+        enemy_x = enemy_x - enemy_x_speed
+
 
     # Despite what the "flip" part suggests, it's not actually flipping the display
     # It is to actually update the display to display the items we want to draw on screen
