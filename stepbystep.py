@@ -11,15 +11,12 @@ BACKGROUND_COLOR = (0, 0, 255)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # This sets the window bar text
-pygame.display.set_caption("Test with randomizer")
+pygame.display.set_caption("Test enemy")
 
-# Test rectangle position variable, now randomized on each run
-obj_x = random.randint(100, 900)
-obj_y = random.randint(100, 600)
-
-# Test rectangle size variable, now randomized too
-obj_width = random.randint(100, 900)
-obj_height = random.randint(100, 600)
+# Enemy variables
+enemy_img = pygame.image.load('images/test.png')
+enemy_x = random.randint(300, 800)
+enemy_y = random.randint(100, 800)
 
 
 # The game looping until the program is exited
@@ -47,11 +44,11 @@ while not quit_game_requested():
     # The canvas gets filled with whatever the background color is (currently blue)
     canvas.fill(BACKGROUND_COLOR)
 
-    # Draw a object
-    pygame.draw.rect(canvas, (255, 255, 0), (obj_x, obj_y, obj_width, obj_height))
+    # Spawn the test enemy, it will be random each time the application starts
+    canvas.blit(enemy_img, (enemy_x, enemy_y))
 
     # Despite what the "flip" part suggests, it's not actually flipping the display
-    # It is to actually update the display to have a (currently blue) background
+    # It is to actually update the display to display the items we want to draw on screen
     # Items that are drawn must be before this command in order to show up on the display
     pygame.display.flip()
 
