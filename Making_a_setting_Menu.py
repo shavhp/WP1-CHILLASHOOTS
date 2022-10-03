@@ -16,7 +16,7 @@ def quit_game_requested():
             break
     return stopping_game
 
-# Making a text
+# Making a text function
 def draw_text(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     canvas.blit(img, (x, y))
