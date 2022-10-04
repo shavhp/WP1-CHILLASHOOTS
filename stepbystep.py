@@ -10,8 +10,10 @@ SCREEN_HEIGHT = 768
 BACKGROUND_COLOR = (0, 0, 255)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-# This sets the window bar text
+# This sets the window bar text and logo
 pygame.display.set_caption("Test enemy")
+icon = pygame.image.load("chinchilla_icon_sha.png")
+pygame.display.set_icon(icon)
 
 # Enemy variables
 enemy_img = pygame.image.load('images/test.png')
