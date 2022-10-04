@@ -1,10 +1,14 @@
+# Import pygame module
 import pygame
 
 # Set up pygame.
 pygame.init()
 
 # Create screen
-SCREEN = pygame.display.set_mode((800, 600))
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
+CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Show background image
 BACKGROUND = pygame.image.load('images/background-galaxy.jpg')
@@ -24,18 +28,16 @@ player_Y_axis_change = 0
 
 # Creates function for player to draw image of sprite icon
 def player(x, y):
-    SCREEN.blit(player_img, (x, y))
+    CANVAS.blit(player_img, (x, y))
 
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
 while running:
 
-    # Adds background color to screen
     # Gets drawn first
-    SCREEN.fill((28, 79, 66))
     # Background image and coordinates of image appearance
-    SCREEN.blit(BACKGROUND, (0, 0))
+    CANVAS.blit(BACKGROUND, (0, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -73,12 +75,12 @@ while running:
         # Adds screen boundaries for main sprite
         if player_X_axis < 0:
             player_X_axis = 0
-        # Value of 736 = width of screen - width of sprite (800x - 64x)
+        # Value of 736 = width of screen - width of sprite (800px - 64px)
         elif player_X_axis >= 800:
             player_X_axis = 736
         elif player_Y_axis < 0:
             player_Y_axis = 0
-        # Value of 536 = height of screen - height of sprite (600x - 64x)
+        # Value of 536 = height of screen - height of sprite (600px - 64px)
         elif player_Y_axis >= 600:
             player_Y_axis = 536
 
