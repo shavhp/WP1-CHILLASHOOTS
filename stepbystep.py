@@ -29,9 +29,8 @@ def quit_game_requested():
             halting = True
             break
         # Event checking if you press a certain key
-        elif event.type == pygame.KEYDOWN:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             # if the user presses the Escape key, it quits the program like the "QUIT" event above
-            event.key = pygame.K_ESCAPE
             halting = True
             break
 
