@@ -46,7 +46,7 @@ while running:
 
         # Checks whether keystroke is left, right, up or down when pressed
         if event.type == pygame.KEYDOWN:
-            print("A keystroke")
+
             '''
             
             Remember to increase speeds when enemy is added,
@@ -71,14 +71,15 @@ while running:
                 player_Y_axis_change = 0
 
         # Adds screen boundaries for main sprite
-        if player_X_axis <= 0:
+        if player_X_axis < 0:
             player_X_axis = 0
-        # This value is chosen because 800 minus sprite size equals 736
-        elif player_X_axis >= 736:
+        # Value of 736 = width of screen - width of sprite (800x - 64x)
+        elif player_X_axis >= 800:
             player_X_axis = 736
-        elif player_Y_axis <= 0:
+        elif player_Y_axis < 0:
             player_Y_axis = 0
-        elif player_Y_axis >= 536:
+        # Value of 536 = height of screen - height of sprite (600x - 64x)
+        elif player_Y_axis >= 600:
             player_Y_axis = 536
 
     player_X_axis += player_X_axis_change
