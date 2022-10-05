@@ -56,7 +56,7 @@ class Bouncer(DummyEnemy):
             self,
             enemy_speed_x=6,
             enemy_speed_y=6,
-            enemy_image="../images/test.png",
+            enemy_image="../images/chinchilla_sprite_light.png",
             x_start=400,
             y_start=300,
     ):
@@ -64,6 +64,7 @@ class Bouncer(DummyEnemy):
         super().__init__()
         self.enemy_speed_x = enemy_speed_x + 1
         self.enemy_speed_y = enemy_speed_y + 1
+        self.image = pygame.image.load(enemy_image).convert_alpha()
 
 
 print("Enemy Module Successfully Loaded.")
