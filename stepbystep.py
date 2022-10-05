@@ -4,8 +4,8 @@ import random
 pygame.init()
 
 # Screen, background and canvas variables
-SCREEN_WIDTH = 1024
-SCREEN_HEIGHT = 768
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 # The color order is: Red, Green, and Blue. The max values are 255
 BACKGROUND_COLOR = (0, 0, 255)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -17,9 +17,9 @@ pygame.display.set_icon(icon)
 
 # Enemy variables
 enemy_img = pygame.image.load('images/test.png')
-enemy_x = random.randint(1000, 1024)
-enemy_y = random.randint(0, 704)
-enemy_x_speed = random.randint(1, 5)
+enemy_x = 864
+enemy_y = random.randint(0, 536)
+enemy_x_speed = random.randint(1, 3)
 
 # The game looping until the program is exited
 def quit_game_requested():
