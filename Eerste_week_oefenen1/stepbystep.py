@@ -1,7 +1,6 @@
 # Importing and initializing PyGame resources and a randomizer module
 import pygame
 from enemy import DummyEnemy
-import random
 
 pygame.init()
 
@@ -16,6 +15,10 @@ canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Test enemy")
 icon = pygame.image.load("../images/chinchilla_icon_sha.png")
 pygame.display.set_icon(icon)
+
+# Clock and speed
+GAME_SPEED = 60
+clock = pygame.time.Clock()
 
 
 # The game looping until the program is exited
@@ -53,6 +56,9 @@ while not quit_game_requested():
     # It is to actually update the display to display the items we want to draw on screen
     # Items that are drawn must be before this command in order to show up on the display
     pygame.display.flip()
+
+    # Clock ticking to the game speed
+    clock.tick(GAME_SPEED)
 
 # When the program quits, this text will be printed before termination
 print("Program Terminated")
