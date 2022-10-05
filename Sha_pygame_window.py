@@ -24,6 +24,7 @@ player_X_axis = 25
 player_Y_axis = 320
 player_X_axis_change = 0
 player_Y_axis_change = 0
+player_speed = 0.25
 
 
 # Creates function for player to draw image of sprite icon
@@ -48,41 +49,38 @@ while running:
 
         # Checks whether keystroke is left, right, up or down when pressed
         if event.type == pygame.KEYDOWN:
-
-            '''
-            
-            Remember to increase speeds when enemy is added,
-            
-            because loading more images is heavy and consumes
-            
-            the speed of character and enemy movement.
-            
-            '''
             if event.key == pygame.K_LEFT:
-                player_X_axis_change = -0.25
+                player_X_axis_change = -player_speed
             if event.key == pygame.K_RIGHT:
-                player_X_axis_change = 0.25
+                player_X_axis_change = player_speed
             if event.key == pygame.K_UP:
-                player_Y_axis_change = -0.25
+                player_Y_axis_change = -player_speed
             if event.key == pygame.K_DOWN:
-                player_Y_axis_change = 0.25
+                player_Y_axis_change = player_speed
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 player_X_axis_change = 0
                 player_Y_axis_change = 0
 
-        # Adds screen boundaries for main sprite
-        if player_X_axis < 0:
-            player_X_axis = 0
-        # Value of 736 = width of screen - width of sprite (800px - 64px)
-        elif player_X_axis >= 800:
-            player_X_axis = 736
-        elif player_Y_axis < 0:
-            player_Y_axis = 0
-        # Value of 536 = height of screen - height of sprite (600px - 64px)
-        elif player_Y_axis >= 600:
-            player_Y_axis = 536
+    # Diagonal movement makes sprite disappear in corners
+
+    # Value of 736 = width of screen - width of sprite (800px - 64px)
+    if player_X_axis < 0:
+        player_X_axis = 0
+    elif player_X_axis > 736:
+        player_X_axis = 736
+    elif player_Y_axis < 0:
+        player_Y_axis = 0
+    # Value of 536 = height of screen - height of sprite (600px - 64px)
+    elif player_Y_axis > 536:
+        player_Y_axis = 536
+
+    '''
+    # This tracks the player's coordinates
+    print({player_X_axis})
+    print({player_Y_axis})
+    '''
 
     player_X_axis += player_X_axis_change
     player_Y_axis += player_Y_axis_change
