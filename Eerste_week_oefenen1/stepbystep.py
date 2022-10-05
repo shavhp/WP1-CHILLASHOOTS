@@ -1,6 +1,6 @@
 # Importing and initializing PyGame resources and a randomizer module
 import pygame
-from enemy import DummyEnemy
+from enemy import *
 
 pygame.init()
 
@@ -41,14 +41,16 @@ def quit_game_requested():
 
 
 # Defining placeholder enemy
-enemy = DummyEnemy()
+enemytest = DummyEnemy()
+enemy = Bouncer()
 
 # Create a window while the previous function is still running
 while not quit_game_requested():
     # The canvas gets filled with whatever the background color is (currently blue)
     canvas.fill(BACKGROUND_COLOR)
 
-    # Draw the test enemy, it will be random each time the application starts
+    # Draw the enemies, it will be random each time the application starts
+    enemytest.update(canvas)
     enemy.update(canvas)
 
 

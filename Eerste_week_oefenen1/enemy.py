@@ -4,14 +4,13 @@ import random
 
 
 class DummyEnemy(Sprite):
-    # Object variables
     def __init__(
-        self,
-        enemy_speed_x=random.randint(3, 6),
-        enemy_speed_y=6,
-        enemy_image="../images/test.png",
-        x_start=864,
-        y_start=random.randint(0, 536),
+            self,
+            enemy_speed_x=random.randint(3, 6),
+            enemy_speed_y=6,
+            enemy_image="../images/test.png",
+            x_start=864,
+            y_start=random.randint(0, 536),
     ):
         # Variables using self
         super().__init__()
@@ -50,6 +49,21 @@ class DummyEnemy(Sprite):
     def reverse(self):
         self.current_speed[0] = -self.current_speed[0]
         self.current_speed[1] = -self.current_speed[1]
+
+
+class Bouncer(DummyEnemy):
+    def __init__(
+            self,
+            enemy_speed_x=6,
+            enemy_speed_y=6,
+            enemy_image="../images/test.png",
+            x_start=400,
+            y_start=300,
+    ):
+        # Variables using self
+        super().__init__()
+        self.enemy_speed_x = enemy_speed_x + 1
+        self.enemy_speed_y = enemy_speed_y + 1
 
 
 print("Enemy Module Successfully Loaded.")
