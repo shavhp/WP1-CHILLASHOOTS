@@ -33,7 +33,7 @@ while not quit_game_requested():
     canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     # Gives u the option to change the background color
-    canvas.fill(BACKGROUND_COLOR)
+    pygame.Rect(30, 30, 350, 160)
 
     # Allows only a portion of the screen to updated, instead of the entire area
     pygame.display.flip()
