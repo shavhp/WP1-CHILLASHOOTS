@@ -6,7 +6,7 @@ pygame.init()
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-
+BACKGROUND_COLOR = (85, 180, 176)
 # This Initialize a window or screen for display (How big u want the screen to be)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -44,7 +44,7 @@ while not quit_game_requested():
 
     # Check if game is paused
     if game_paused == True:
-        draw_text("HELLO", font, TEXT_COL, 160, 250)
+        draw_text("Settings", font, TEXT_COL, 160, 250)
         # Display menu
     else:
         draw_text("Press SPACE to pause", font, TEXT_COL, 160, 250)
