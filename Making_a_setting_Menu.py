@@ -47,21 +47,6 @@ class button1():
         self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
         self.rect = self.image.get_rect()
 
-    def draw(self, surface):
-        action = False
-        # get mouse position
-        pos = pygame.mouse.get_pos()
-
-        # check mouseover and clicked conditions
-        if self.rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                self.clicked = True
-                action = True
-
-        if pygame.mouse.get_pressed()[0] == 0:
-            self.clicked = False
-
-        return action
 # Game variables
 game_paused = False
 # Making a game loop. While the The Stopping_game is not True, it keeps going to loop
@@ -74,9 +59,11 @@ while not quit_game_requested():
         pos = pygame.mouse.get_pos()
         color_popup = (75,0,130)
         color = (0, 0, 0)
-        pygame.draw.rect(canvas, color, pygame.Rect(98, 80, 143, 71))
-        pygame.draw.rect(canvas, color, pygame.Rect(348, 80, 151, 71))
-        pygame.draw.rect(canvas, color, pygame.Rect(598, 80, 129, 71))
+        color_white =(0.2, 0.4, 0.6)
+        pygame.draw.rect(canvas, color_white, pygame.Rect(50, 200, 700, 350),  0, 7)
+        pygame.draw.rect(canvas, color, pygame.Rect(94, 80, 143, 71),  0, 7)
+        pygame.draw.rect(canvas, color, pygame.Rect(344, 80, 151, 71),  0, 7)
+        pygame.draw.rect(canvas, color, pygame.Rect(594, 80, 129, 71),  0, 7)
         canvas.blit(Setting_text, (100, 80))
         canvas.blit(Controls_text, (350, 80))
         canvas.blit(Credits_text, (600, 80))
