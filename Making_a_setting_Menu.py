@@ -4,9 +4,12 @@ import pygame
 # Initialize all imported pygame modules
 pygame.init()
 
+# Show background image
+BACKGROUND = pygame.image.load('images/background-galaxy.jpg')
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-BACKGROUND_COLOR = (85, 180, 176)
+BACKGROUND_COLOR = (0, 0, 0)
+
 # This Initialize a window or screen for display (How big u want the screen to be)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -44,9 +47,11 @@ while not quit_game_requested():
 
     # Check if game is paused
     if game_paused == True:
-        draw_text("Settings", font, TEXT_COL, 160, 250)
+        canvas.blit(BACKGROUND, (0, 0))
+        draw_text("Settings", font, TEXT_COL, 190, 250)
         # Display menu
     else:
+        canvas.blit(BACKGROUND, (0, 0))
         draw_text("Press SPACE to pause", font, TEXT_COL, 160, 250)
 
     # The name that will be displayed on the pygame
