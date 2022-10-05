@@ -43,7 +43,7 @@ def bounce_if_required(speed_tuple, position_rect):
 
 # Hier wordt het logo ingeladen. In principe gebeurt er nu nog niets mee en
 # staat het logo niet op het scherm
-logo = pygame.image.load("images/ra_logo.png").convert_alpha()
+logo = pygame.image.load("../images/ra_logo.png").convert_alpha()
 logo_rect = logo.get_rect()
 
 

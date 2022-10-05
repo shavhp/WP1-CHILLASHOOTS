@@ -16,7 +16,7 @@ icon = pygame.image.load("chinchilla_icon_sha.png")
 pygame.display.set_icon(icon)
 
 # Enemy variables
-enemy_img = pygame.image.load('images/test.png')
+enemy_img = pygame.image.load('../images/test.png')
 enemy_x = 864
 enemy_y = random.randint(0, 536)
 enemy_x_speed = random.randint(1, 3)
