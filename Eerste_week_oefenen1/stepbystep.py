@@ -1,6 +1,7 @@
 # Importing and initializing PyGame resources and a randomizer module
 import pygame
-import random
+from enemy import *
+
 pygame.init()
 
 # Screen, background and canvas variables
@@ -12,14 +13,13 @@ canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # This sets the window bar text and logo
 pygame.display.set_caption("Test enemy")
-icon = pygame.image.load("chinchilla_icon_sha.png")
+icon = pygame.image.load("../images/chinchilla_icon_sha.png")
 pygame.display.set_icon(icon)
 
-# Enemy variables
-enemy_img = pygame.image.load('images/test.png')
-enemy_x = 864
-enemy_y = random.randint(0, 536)
-enemy_x_speed = random.randint(1, 3)
+# Clock and speed
+GAME_SPEED = 60
+clock = pygame.time.Clock()
+
 
 # The game looping until the program is exited
 def quit_game_requested():
@@ -40,15 +40,18 @@ def quit_game_requested():
     return halting
 
 
+# Defining placeholder enemy
+enemytest = DummyEnemy()
+enemy = Bouncer()
+
 # Create a window while the previous function is still running
 while not quit_game_requested():
     # The canvas gets filled with whatever the background color is (currently blue)
     canvas.fill(BACKGROUND_COLOR)
 
-    # Spawn the test enemy, it will be random each time the application starts
-    canvas.blit(enemy_img, (enemy_x, enemy_y))
-    if enemy_x != -64:
-        enemy_x = enemy_x - enemy_x_speed
+    # Draw the enemies, it will be random each time the application starts
+    enemytest.update(canvas)
+    enemy.update(canvas)
 
 
     # Despite what the "flip" part suggests, it's not actually flipping the display
@@ -56,6 +59,8 @@ while not quit_game_requested():
     # Items that are drawn must be before this command in order to show up on the display
     pygame.display.flip()
 
+    # Clock ticking to the game speed
+    clock.tick(GAME_SPEED)
 
 # When the program quits, this text will be printed before termination
 print("Program Terminated")

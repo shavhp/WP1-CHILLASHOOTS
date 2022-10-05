@@ -4,9 +4,13 @@ import pygame
 # Initialize all imported pygame modules
 pygame.init()
 
+# Show background image
+BACKGROUND = pygame.image.load('images/background-galaxy.jpg')
+BLACKPOP_UP = pygame.image.load('images/Black_Screen.jpg')
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-BACKGROUND_COLOR = (85, 180, 176)
+BACKGROUND_COLOR = (0, 0, 0)
+
 # This Initialize a window or screen for display (How big u want the screen to be)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -24,7 +28,7 @@ def quit_game_requested():
 
 
 # Define fonts
-font = pygame.font.SysFont("arialblack", 40)
+font = pygame.font.SysFont("arialblack", 20)
 
 # Define colours
 TEXT_COL = (255, 255, 255)
@@ -35,7 +39,12 @@ def draw_text(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     canvas.blit(img, (x, y))
 
-
+class button1():
+    def __init__(self, x, y, image, scale):
+        width = image.get_width()
+        height = image.get_height()
+        self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
+        self.rect = self.image.get_rect()
 # Game variables
 game_paused = False
 
@@ -44,10 +53,16 @@ while not quit_game_requested():
 
     # Check if game is paused
     if game_paused == True:
-        draw_text("Settings", font, TEXT_COL, 160, 250)
+        canvas.blit(BACKGROUND, (0, 0))
+        canvas.blit(BLACKPOP_UP, (200, 150))
+        draw_text("Settings", font, TEXT_COL, 350, 170)
+        draw_text("Controls", font, TEXT_COL, 350, 265)
+        draw_text("Credits", font, TEXT_COL, 350, 360)
+
         # Display menu
     else:
-        draw_text("Press SPACE to pause", font, TEXT_COL, 160, 250)
+        canvas.blit(BACKGROUND, (0, 0))
+        draw_text("Press SPACE to continue", font, TEXT_COL, 290, 250)
 
     # The name that will be displayed on the pygame
     pygame.display.set_caption("Werkplaats 1: PyGame")
