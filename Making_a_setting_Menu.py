@@ -4,6 +4,9 @@ import pygame
 # Initialize all imported pygame modules
 pygame.init()
 
+# The name that will be displayed on the pygame
+pygame.display.set_caption("Werkplaats 1: PyGame")
+
 # Show background image
 BACKGROUND = pygame.image.load('images/background-galaxy.jpg')
 Setting_text = pygame.image.load('images/Puple_settings.png')
@@ -40,41 +43,36 @@ def draw_text(text, font, text_col, x, y):
     canvas.blit(img, (x, y))
 
 
-class button1():
+class Button1():
     def __init__(self, x, y, image, scale):
         width = image.get_width()
         height = image.get_height()
         self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
         self.rect = self.image.get_rect()
 
+
 # Game variables
 game_paused = False
 # Making a game loop. While the The Stopping_game is not True, it keeps going to loop
 while not quit_game_requested():
-
     # Check if game is paused
     if game_paused == True:
         canvas.blit(BACKGROUND, (0, 0))
-        # get mouse position
-        pos = pygame.mouse.get_pos()
-        color_popup = (75,0,130)
+        color_popup = (75, 0, 130)
         color = (0, 0, 0)
-        color_white =(0.2, 0.4, 0.6)
-        pygame.draw.rect(canvas, color_white, pygame.Rect(50, 200, 700, 350),  0, 7)
-        pygame.draw.rect(canvas, color, pygame.Rect(94, 80, 143, 71),  0, 7)
-        pygame.draw.rect(canvas, color, pygame.Rect(344, 80, 151, 71),  0, 7)
-        pygame.draw.rect(canvas, color, pygame.Rect(594, 80, 129, 71),  0, 7)
+        color_white = (0.2, 0.4, 0.6)
+        pygame.draw.rect(canvas, color_white, pygame.Rect(50, 200, 700, 350), 0, 7)
+        pygame.draw.rect(canvas, color, pygame.Rect(94, 80, 143, 71), 0, 7)
+        pygame.draw.rect(canvas, color, pygame.Rect(344, 80, 151, 71), 0, 7)
+        pygame.draw.rect(canvas, color, pygame.Rect(594, 80, 129, 71), 0, 7)
         canvas.blit(Setting_text, (100, 80))
         canvas.blit(Controls_text, (350, 80))
         canvas.blit(Credits_text, (600, 80))
-
         # Display menu
     else:
         canvas.blit(BACKGROUND, (0, 0))
         draw_text("Press SPACE to continue", font, TEXT_COL, 290, 250)
 
-    # The name that will be displayed on the pygame
-    pygame.display.set_caption("Werkplaats 1: PyGame")
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
