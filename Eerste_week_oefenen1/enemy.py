@@ -12,7 +12,7 @@ class DummyEnemy(Sprite):
 
         # Create index thing of the speed variables for reversing
         super().__init__()
-        self.enemy_speed_x = enemy_speed_x
+        self.enemy_speed_x = -enemy_speed_x
         self.enemy_speed_y = enemy_speed_y
         self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
 
@@ -32,13 +32,6 @@ class DummyEnemy(Sprite):
         canvas.blit(self.image, self.rect)
 
     def bounce_if_required(self, screen_width, screen_height):
-        # Enemy reverses when hitting the left side of the display.
-        if self.rect.left <= 0:
-            self.current_speed[0] = self.enemy_speed_x
-        # Enemy reverses when hitting the right side of the display.
-        elif self.rect.right >= screen_width:
-            self.current_speed[0] = -self.enemy_speed_x
-
         # Enemy reverses when hitting the top side of the display.
         if self.rect.top <= 0:
             self.current_speed[1] = self.enemy_speed_y
