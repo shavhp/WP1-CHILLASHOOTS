@@ -5,10 +5,9 @@ import random
 
 class DummyEnemy(Sprite):
     def __init__(self, enemy_image = "../images/test.png"):
-        super().__init__()
         enemy_speed_x = random.randint(3, 6)
         enemy_speed_y = 6
-        x_start = 864
+        x_start = 400
         y_start = random.randint(0, 536)
 
         # Create index thing of the speed variables for reversing
@@ -16,6 +15,7 @@ class DummyEnemy(Sprite):
         self.enemy_speed_y = enemy_speed_y
         self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
         self.image = pygame.image.load(enemy_image).convert_alpha()
+
         # Object rectangle needed for collision
         self.rect = self.image.get_rect()
         self.rect.x = x_start
@@ -51,15 +51,13 @@ class DummyEnemy(Sprite):
 class Bouncer(DummyEnemy):
     def __init__(self, enemy_image="../images/chinchilla_sprite_light.png"):
         super().__init__()
-        enemy_speed_x = 6
-        enemy_speed_y = 6
-
-        x_start = 400
-        y_start = 300
-
-        self.enemy_speed_x = enemy_speed_x + 1
-        self.enemy_speed_y = enemy_speed_y + 1
+        x_start = 864
+        y_start = random.randint(0, 536)
+        self.enemy_speed_x = 6
+        self.enemy_speed_y = 6
         self.image = pygame.image.load(enemy_image).convert_alpha()
+        self.rect.x = x_start
+        self.rect.y = y_start
 
 
 print("Enemy Module Successfully Loaded.")
