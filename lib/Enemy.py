@@ -48,7 +48,7 @@ class DummyEnemy(Sprite):
 
 
 class Bouncer(DummyEnemy):
-    def __init__(self, enemy_image="../images/chinchilla_sprite_light.png"):
+    def __init__(self, enemy_image="../images/enemybird.png"):
         super().__init__()
         x_start = 400
         y_start = random.randint(0, 536)
@@ -79,7 +79,7 @@ class Bouncer(DummyEnemy):
             self.current_speed[1] = -self.enemy_speed_y
 
 class Line(DummyEnemy):
-    def __init__(self, enemy_image="../images/chinchilla_sprite_light.png"):
+    def __init__(self, enemy_image="../images/enemybird.png"):
         super().__init__()
         x_start = 864
         y_start = random.randint(0, 536)
