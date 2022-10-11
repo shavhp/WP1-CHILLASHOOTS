@@ -2,16 +2,17 @@ import pygame
 from pygame.sprite import Sprite
 import random
 
-
 class DummyEnemy(Sprite):
-    def __init__(self, enemy_image="../images/test.png"):
+    def __init__(
+            self,
+            enemy_speed_x=random.randint(8, 12),
+            enemy_speed_y=6
+    ):
         entity_count = pygame.sprite.Group()
         entity_visible = pygame.sprite.Group()
-
-        enemy_speed_x = random.randint(2, 4)
-        enemy_speed_y = 6
         x_start = 864
         y_start = random.randint(0, 536)
+        enemy_image = pygame.image.load("../images/test.png").convert_alpha()
 
         # Create index thing of the speed variables for reversing
         super().__init__()
@@ -20,7 +21,7 @@ class DummyEnemy(Sprite):
         self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
 
         # Load the image
-        self.image = pygame.image.load(enemy_image).convert_alpha()
+        self.image = enemy_image
 
         # Object rectangle needed for collision and starting position
         self.rect = self.image.get_rect()
@@ -48,20 +49,23 @@ class DummyEnemy(Sprite):
 
 
 class Bouncer(DummyEnemy):
-    def __init__(self, enemy_image="../images/chinchilla_sprite_light.png"):
-        super().__init__()
-        x_start = 400
-        y_start = random.randint(0, 536)
+    def __init__(
+            self,
+            enemy_speed_x=6,
+            enemy_speed_y=6
+    ):
+        enemy_image = pygame.image.load("../images/EnemyBird.png").convert_alpha()
+        x_start=400,
+        y_start=random.randint(0, 536)
 
-        # For some reason, it is okay to have the enemy speed variables to be this simple
-        self.enemy_speed_x = 6
-        self.enemy_speed_y = 6
+        # Create index thing of the speed variables for reversing
+        super().__init__()
+        self.enemy_speed_x = enemy_speed_x
+        self.enemy_speed_y = enemy_speed_y
         self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
 
         # These lines are always needed when creating enemy derivatives with different images or starting positions
-        self.image = pygame.image.load(enemy_image).convert_alpha()
-        self.rect.x = x_start
-        self.rect.y = y_start
+        self.image = enemy_image
 
     def bounce_if_required(self, screen_width, screen_height):
         # Enemy reverses when hitting the left side of the display.
@@ -79,17 +83,16 @@ class Bouncer(DummyEnemy):
             self.current_speed[1] = -self.enemy_speed_y
 
 class Line(DummyEnemy):
-    def __init__(self, enemy_image="../images/chinchilla_sprite_light.png"):
+    def __init__(self):
         super().__init__()
         x_start = 864
         y_start = random.randint(0, 536)
 
-        self.enemy_speed_x = -random.randint(4, 8)
-        self.enemy_speed_y = 0
+        self.enemy_speed_x = -1
+        self.enemy_speed_y = random.randint(4, 8)
         self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
 
         # These lines are always needed when creating enemy derivatives with different images or starting positions
-        self.image = pygame.image.load(enemy_image).convert_alpha()
         self.rect.x = x_start
         self.rect.y = y_start
 
