@@ -93,6 +93,3 @@ class Line(DummyEnemy):
         self.rect.x = x_start
         self.rect.y = y_start
 
-
-
-print("Enemy Module Successfully Loaded.")
