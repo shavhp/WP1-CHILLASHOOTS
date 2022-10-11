@@ -1,15 +1,15 @@
 import os
-
 from lib.Button import Button
 from lib.Titel import *
 from lib.Enemy import *
+from lib.Moving_Background_1 import *
 
 # Initializes pygame library
 
 pygame.init()
 
 # Show background image
-BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
+# BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
 start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
 start_button = Button(250, 300, start_img, 1)
 
@@ -32,7 +32,9 @@ while running:
         CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
         # Show background image
-        BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
+        # BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
+
+
 
         # Title and Icon
         pygame.display.set_caption("ChillaShoots")
@@ -46,7 +48,7 @@ while running:
         player_Y_axis = 320
         player_X_axis_change = 0
         player_Y_axis_change = 0
-        player_speed = 5
+        player_speed = 10
 
         # Define enemies
         enemytest = DummyEnemy()
@@ -60,17 +62,23 @@ while running:
 
         # Main event loop, contains everything that has to stay infinitely consistent
         running = True
+        scroll = 0
         while running:
+
 
             # Gets drawn first
             # Background image and coordinates of image appearance
             CANVAS.blit(BACKGROUND, (0, 0))
-
+            clock.tick(FPS)
+            for i in range(0, tiles):
+                screen.blit(bg, (i * bg_width + scroll, 0))
+            scroll -= 5
+            if abs(scroll) > bg_width:
+                scroll = 0
             # Draw the enemies
             enemytest.update(CANVAS)
             line_enemy.update(CANVAS)
             enemy.update(CANVAS)
-
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     running = False
