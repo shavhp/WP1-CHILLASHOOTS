@@ -54,9 +54,9 @@ class Bouncer(DummyEnemy):
             enemy_speed_x=6,
             enemy_speed_y=6
     ):
-        enemy_image = pygame.image.load("../images/EnemyBird.png").convert_alpha()
-        x_start=400,
-        y_start=random.randint(0, 536)
+        enemy_image = pygame.image.load("../images/EnemyBird.png")
+        x_start = 400,
+        y_start = random.randint(0, 536)
 
         # Create index thing of the speed variables for reversing
         super().__init__()
