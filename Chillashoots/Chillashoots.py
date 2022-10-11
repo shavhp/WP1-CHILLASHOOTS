@@ -1,3 +1,5 @@
+import os
+
 from lib.Button import Button
 from lib.Titel import *
 from lib.Enemy import *
@@ -7,8 +9,8 @@ from lib.Enemy import *
 pygame.init()
 
 # Show background image
-BACKGROUND = pygame.image.load('../images/background-galaxy.jpg')
-start_img = pygame.image.load('../images/button_start.png').convert_alpha()
+BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
+start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
 start_button = Button(250, 300, start_img, 1)
 
 
@@ -30,16 +32,16 @@ while running:
         CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
         # Show background image
-        BACKGROUND = pygame.image.load('../images/background-galaxy.jpg')
+        BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
 
         # Title and Icon
         pygame.display.set_caption("ChillaShoots")
-        icon = pygame.image.load('../images/chinchilla_icon_sha.png')
+        icon = pygame.image.load(os.path.join('../images', 'chinchilla_icon_sha.png'))
         pygame.display.set_icon(icon)
 
         # Player sprite
 
-        player_img = pygame.image.load("../images/chinchilla_sprite_light.png")
+        player_img = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
         player_X_axis = 25
         player_Y_axis = 320
         player_X_axis_change = 0
