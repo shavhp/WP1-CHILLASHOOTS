@@ -5,6 +5,9 @@ import random
 
 class DummyEnemy(Sprite):
     def __init__(self, enemy_image="../images/test.png"):
+        entity_count = pygame.sprite.Group()
+        entity_visible = pygame.sprite.Group()
+
         enemy_speed_x = random.randint(2, 4)
         enemy_speed_y = 6
         x_start = 864
@@ -53,6 +56,7 @@ class Bouncer(DummyEnemy):
         # For some reason, it is okay to have the enemy speed variables to be this simple
         self.enemy_speed_x = 6
         self.enemy_speed_y = 6
+        self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
 
         # These lines are always needed when creating enemy derivatives with different images or starting positions
         self.image = pygame.image.load(enemy_image).convert_alpha()
@@ -73,6 +77,22 @@ class Bouncer(DummyEnemy):
         # Enemy reverses when hitting the bottom side of the display.
         elif self.rect.bottom >= screen_height:
             self.current_speed[1] = -self.enemy_speed_y
+
+class Line(DummyEnemy):
+    def __init__(self, enemy_image="../images/chinchilla_sprite_light.png"):
+        super().__init__()
+        x_start = 864
+        y_start = random.randint(0, 536)
+
+        self.enemy_speed_x = -random.randint(4, 8)
+        self.enemy_speed_y = 0
+        self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
+
+        # These lines are always needed when creating enemy derivatives with different images or starting positions
+        self.image = pygame.image.load(enemy_image).convert_alpha()
+        self.rect.x = x_start
+        self.rect.y = y_start
+
 
 
 print("Enemy Module Successfully Loaded.")
