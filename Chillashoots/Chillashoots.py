@@ -12,6 +12,11 @@ start_img = pygame.image.load('../images/button_start.png').convert_alpha()
 start_button = Button(250, 300, start_img, 1)
 
 
+# Clock and speed
+GAME_SPEED = 60
+clock = pygame.time.Clock()
+
+
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
 while running:
@@ -39,7 +44,7 @@ while running:
         player_Y_axis = 320
         player_X_axis_change = 0
         player_Y_axis_change = 0
-        player_speed = 0.53
+        player_speed = 5
 
         # Define enemies
         enemytest = DummyEnemy()
@@ -111,10 +116,14 @@ while running:
             player(player_X_axis, player_Y_axis)
             pygame.display.update()
 
+            # Clock ticking to the game speed
+            clock.tick(GAME_SPEED)
+
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             running = False
 
         if event.type == pygame.QUIT:
             running = False
+
     pygame.display.update()
