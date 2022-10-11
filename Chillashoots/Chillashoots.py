@@ -1,5 +1,6 @@
 from lib.Button import Button
 from lib.Titel import *
+from lib.Enemy import *
 
 # Initializes pygame library
 
@@ -9,6 +10,7 @@ pygame.init()
 BACKGROUND = pygame.image.load('../images/background-galaxy.jpg')
 start_img = pygame.image.load('../images/button_start.png').convert_alpha()
 start_button = Button(250, 300, start_img, 1)
+
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
@@ -39,6 +41,10 @@ while running:
         player_Y_axis_change = 0
         player_speed = 0.53
 
+        # Define enemies
+        enemytest = DummyEnemy()
+        line_enemy = Line()
+        enemy = Bouncer()
 
         # Creates function for player to draw image of sprite icon
         def player(x, y):
@@ -52,6 +58,11 @@ while running:
             # Gets drawn first
             # Background image and coordinates of image appearance
             CANVAS.blit(BACKGROUND, (0, 0))
+
+            # Draw the enemies
+            enemytest.update(CANVAS)
+            line_enemy.update(CANVAS)
+            enemy.update(CANVAS)
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
