@@ -1,6 +1,8 @@
 # Imports pygame module
 import pygame
 
+import os
+
 # Initializes pygame library
 pygame.init()
 
@@ -11,10 +13,10 @@ SCREEN_HEIGHT = 600
 CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Show background image
-BACKGROUND = pygame.image.load('images/background-galaxy.jpg')
+BACKGROUND = pygame.image.load(os.path.join('images', 'background-galaxy.jpg'))
 
 # Font and color of title
-TITLE_FONT = pygame.font.Font('fonts/gametitle_04B_30__.ttf', 60)
+TITLE_FONT = pygame.font.Font(os.path.join('fonts', 'gametitle_04B_30__.ttf'), 60)
 TITLE_COLOR_1 = (200, 200, 200)
 TITLE_COLOR_2 = (0, 0, 0)
 
@@ -32,7 +34,7 @@ TITLE_RECT_2.center = (SCREEN_WIDTH // 1.39, SCREEN_HEIGHT // 3)
 
 # Title and Icon
 pygame.display.set_caption("ChillaShoots")
-icon = pygame.image.load('images\chinchilla_icon_sha.png')
+icon = pygame.image.load(os.path.join('images', 'chinchilla_icon_sha.png'))
 pygame.display.set_icon(icon)
 
 # Main event loop, contains everything that has to stay infinitely consistent

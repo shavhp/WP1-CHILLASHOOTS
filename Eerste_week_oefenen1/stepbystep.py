@@ -40,8 +40,9 @@ def quit_game_requested():
     return halting
 
 
-# Defining placeholder enemy
+# Defining enemies
 enemytest = DummyEnemy()
+line_enemy = Line()
 enemy = Bouncer()
 
 # Create a window while the previous function is still running
@@ -51,6 +52,7 @@ while not quit_game_requested():
 
     # Draw the enemies, it will be random each time the application starts
     enemytest.update(canvas)
+    line_enemy.update(canvas)
     enemy.update(canvas)
 
 
