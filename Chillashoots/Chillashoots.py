@@ -7,8 +7,8 @@ pygame.init()
 
 # Show background image
 BACKGROUND = pygame.image.load('../images/background-galaxy.jpg')
-start_img = pygame.image.load('../images/start_button.png').convert_alpha()
-start_button = Button(300, 300, start_img, 0.5)
+start_img = pygame.image.load('../images/button_start.png').convert_alpha()
+start_button = Button(250, 300, start_img, 1)
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
@@ -37,7 +37,7 @@ while running:
         player_Y_axis = 320
         player_X_axis_change = 0
         player_Y_axis_change = 0
-        player_speed = 0.25
+        player_speed = 0.53
 
 
         # Creates function for player to draw image of sprite icon
