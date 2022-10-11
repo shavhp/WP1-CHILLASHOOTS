@@ -1,6 +1,9 @@
 # Import pygame module
 import pygame
 
+# Imports OS for file paths
+import os
+
 # Set up pygame.
 pygame.init()
 
@@ -11,16 +14,16 @@ SCREEN_HEIGHT = 600
 CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Show background image
-BACKGROUND = pygame.image.load('images/background-galaxy.jpg')
+BACKGROUND = pygame.image.load(os.path.join('images', 'background-galaxy.jpg'))
 
 # Title and Icon
 pygame.display.set_caption("ChillaShoots")
-icon = pygame.image.load('images/chinchilla_icon_sha.png')
+icon = pygame.image.load(os.path.join('images', 'chinchilla_icon_sha.png'))
 pygame.display.set_icon(icon)
 
 # Player sprite
 
-player_img = pygame.image.load("images/chinchilla_sprite_light.png")
+player_img = pygame.image.load(os.path.join('images', 'chinchilla_sprite_light.png'))
 player_X_axis = 25
 player_Y_axis = 320
 player_X_axis_change = 0
