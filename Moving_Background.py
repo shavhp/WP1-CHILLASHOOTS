@@ -9,7 +9,7 @@ SCREEN_HEIGHT = 600
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Moving background")
-chilla = pygame.image.load("images/chinchilla_sprite_sha.png").convert()
+chilla = pygame.image.load("images/chinchilla_sprite_sha.png").convert_alpha()
 bg = pygame.image.load("images/bg.png").convert()
 bg_width = bg.get_width()
 
@@ -23,7 +23,7 @@ while run:
     for i in range(0, tiles):
         screen.blit(bg, (i * bg_width + scroll, 0))
 
-    scroll -= 3
+    scroll -= 4
     if abs(scroll) > bg_width:
         scroll = 0
 
