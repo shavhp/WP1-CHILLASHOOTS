@@ -5,7 +5,7 @@ import random
 class DummyEnemy(Sprite):
     def __init__(
             self,
-            enemy_speed_x=random.randint(8, 12),
+            enemy_speed_x=random.randint(6, 10),
             enemy_speed_y=6
     ):
         entity_count = pygame.sprite.Group()
