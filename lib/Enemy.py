@@ -12,7 +12,7 @@ class DummyEnemy(Sprite):
         entity_visible = pygame.sprite.Group()
         x_start = 864
         y_start = random.randint(0, 536)
-        enemy_image = pygame.image.load("../images/test.png").convert_alpha()
+        enemy_image = pygame.image.load("../images/ghost.png").convert_alpha()
 
         # Create index thing of the speed variables for reversing
         super().__init__()
