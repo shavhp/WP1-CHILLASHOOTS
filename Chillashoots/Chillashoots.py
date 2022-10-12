@@ -1,6 +1,6 @@
 import os
 from lib.Button import *
-from lib.Titel import *
+from lib.Game_Over import *
 from lib.Enemy import *
 from lib.Moving_Background_1 import *
 
@@ -28,17 +28,9 @@ while running:
     titel()
     if more_button.draw(CANVAS):
         print("NO MORE!!!")
-    if high_score_button.draw(CANVAS):
-        print("hello")
+    elif high_score_button.draw(CANVAS):
+        Game_Over()
     if start_button.draw(CANVAS):
-        # Create screen
-        SCREEN_WIDTH = 800
-        SCREEN_HEIGHT = 600
-
-        CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-        # Show background image
-
         # Title and Icon
         pygame.display.set_caption("ChillaShoots")
         icon = pygame.image.load(os.path.join('../images', 'chinchilla_icon_sha.png'))
