@@ -3,7 +3,7 @@ from lib.Button import *
 from lib.Game_Over import *
 from lib.Enemy import *
 from lib.Moving_Background_1 import *
-
+from lib.Sound import sound_maker
 # Initializes pygame library
 
 pygame.init()
@@ -30,7 +30,9 @@ enemySprites.add(DummyEnemy(30))
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
 while running:
+
     titel()
+    sound_maker()
     if more_button.draw(CANVAS):
         print("NO MORE!!!")
     elif high_score_button.draw(CANVAS):
