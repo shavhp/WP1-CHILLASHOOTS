@@ -16,11 +16,16 @@ start_button = Button(250, 300, start_img, 1)
 high_score_button = Button(250, 430, high_score_img, 1)
 more_button = Button(460, 430, more_img, 1)
 
-
 # Clock and speed
 GAME_SPEED = 60
 clock = pygame.time.Clock()
+enemy_timer = 0
 
+# For infinite enemy spawning
+global enemySprites
+enemySprites = pygame.sprite.RenderPlain(())
+# Random placed enemy, the number after the class name determines the enemy X speed
+enemySprites.add(DummyEnemy(30))
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
@@ -47,8 +52,8 @@ while running:
 
         # Define enemies
         enemytest = DummyEnemy()
-        line_enemy = Line()
         enemy = Bouncer()
+
 
         # Creates function for player to draw image of sprite icon
         def player(x, y):
@@ -69,10 +74,17 @@ while running:
             scroll -= 5
             if abs(scroll) > bg_width:
                 scroll = 0
-            # Draw the enemies
-            enemytest.update(CANVAS)
-            line_enemy.update(CANVAS)
+
+            # Test drawing the enemies
             enemy.update(CANVAS)
+
+            # Spawning test enemies
+            enemySprites.update(CANVAS)
+            enemy_timer += 1
+            if enemy_timer >= 40:
+                enemySprites.add(DummyEnemy(random.randint(6, 10)))
+                enemy_timer = 0
+
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     running = False
