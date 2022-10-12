@@ -32,9 +32,6 @@ while running:
         CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
         # Show background image
-        # BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
-
-
 
         # Title and Icon
         pygame.display.set_caption("ChillaShoots")
@@ -64,7 +61,6 @@ while running:
         running = True
         scroll = 0
         while running:
-
 
             # Gets drawn first
             # Background image and coordinates of image appearance
