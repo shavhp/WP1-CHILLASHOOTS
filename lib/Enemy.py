@@ -83,13 +83,17 @@ class Bouncer(DummyEnemy):
             self.current_speed[1] = -self.enemy_speed_y
 
 class Line(DummyEnemy):
-    def __init__(self):
+    def __init__(
+            self,
+            enemy_speed_x=-1,
+            enemy_speed_y=random.randint(4, 8)
+    ):
         super().__init__()
         x_start = 864
         y_start = random.randint(0, 536)
 
-        self.enemy_speed_x = -1
-        self.enemy_speed_y = random.randint(4, 8)
+        self.enemy_speed_x = enemy_speed_x
+        self.enemy_speed_y = enemy_speed_y
         self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
 
         # These lines are always needed when creating enemy derivatives with different images or starting positions
