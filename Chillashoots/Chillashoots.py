@@ -35,7 +35,7 @@ while running:
     sound_maker()
     if more_button.draw(CANVAS):
         print("NO MORE!!!")
-    elif high_score_button.draw(CANVAS):
+    if high_score_button.draw(CANVAS):
         Game_Over()
     if start_button.draw(CANVAS):
         # Title and Icon
