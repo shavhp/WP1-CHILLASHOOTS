@@ -1,5 +1,5 @@
 import os
-from lib.Button import Button
+from lib.Button import *
 from lib.Titel import *
 from lib.Enemy import *
 from lib.Moving_Background_1 import *
@@ -8,10 +8,13 @@ from lib.Moving_Background_1 import *
 
 pygame.init()
 
-# Show background image
-# BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
+# Make button
 start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
+high_score_img = pygame.image.load(os.path.join('../images', 'button_highscore.png')).convert_alpha()
+more_img = pygame.image.load(os.path.join('../images', 'button_more.png')).convert_alpha()
 start_button = Button(250, 300, start_img, 1)
+high_score_button = Button(250, 430, high_score_img, 1)
+more_button = Button(460, 430, more_img, 1)
 
 
 # Clock and speed
@@ -23,7 +26,10 @@ clock = pygame.time.Clock()
 running = True
 while running:
     titel()
-
+    if more_button.draw(CANVAS):
+        print("NO MORE!!!")
+    if high_score_button.draw(CANVAS):
+        print("hello")
     if start_button.draw(CANVAS):
         # Create screen
         SCREEN_WIDTH = 800
@@ -94,7 +100,8 @@ while running:
                         player_Y_axis_change = player_speed
 
                 if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                    if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT \
+                            or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                         player_X_axis_change = 0
                         player_Y_axis_change = 0
 
