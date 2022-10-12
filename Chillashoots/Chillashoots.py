@@ -24,7 +24,7 @@ enemy_timer = 0
 # For infinite enemy spawning
 global enemySprites
 enemySprites = pygame.sprite.RenderPlain(())
-# Random placed enemy, the number after the class name determines the enemy X speed
+# Pre-places an enemy, positions can be modified (x,y)
 enemySprites.add(DummyEnemy(30))
 
 # Main event loop, contains everything that has to stay infinitely consistent
@@ -83,6 +83,7 @@ while running:
             enemy_timer += 1
             if enemy_timer >= 40:
                 enemySprites.add(DummyEnemy(random.randint(6, 10)))
+                enemySprites.add(DummyEnemy(random.randint(6, 10),-6))
                 enemy_timer = 0
 
             for event in pygame.event.get():
