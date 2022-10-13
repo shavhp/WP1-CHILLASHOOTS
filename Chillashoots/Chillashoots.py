@@ -64,7 +64,7 @@ while running:
         player_Y_axis = 320
         player_X_axis_change = 0
         player_Y_axis_change = 0
-        player_speed = 10
+        player_speed = 20
 
         # Define enemies
         enemytest = DummyEnemy()
@@ -96,7 +96,7 @@ while running:
             total_seconds = start_time + (frame_count // frame_rate)
 
             # Increase frame count
-            frame_count += 10
+            frame_count += 22
 
             # Limit frames per second
             clock.tick(frame_rate)
