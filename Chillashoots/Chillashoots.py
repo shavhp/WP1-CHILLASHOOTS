@@ -4,8 +4,8 @@ from lib.Game_Over import *
 from lib.Enemy import *
 from lib.Moving_Background_1 import *
 from lib.Sound import sound_maker
-# Initializes pygame library
 
+# Initializes pygame library
 pygame.init()
 
 # Make button
@@ -20,6 +20,21 @@ more_button = Button(460, 430, more_img, 1)
 GAME_SPEED = 60
 clock = pygame.time.Clock()
 enemy_timer = 0
+
+# Define colors
+GREY = (200, 200, 200)
+
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
+
+font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
+
+frame_count = 0
+frame_rate = 60
+start_time = 0
+
+# Calculate total seconds
+total_seconds = frame_count // frame_rate
 
 # For infinite enemy spawning
 global enemySprites
@@ -44,7 +59,6 @@ while running:
         pygame.display.set_icon(icon)
 
         # Player sprite
-
         player_img = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
         player_X_axis = 25
         player_Y_axis = 320
@@ -56,11 +70,9 @@ while running:
         enemytest = DummyEnemy()
         enemy = Bouncer()
 
-
         # Creates function for player to draw image of sprite icon
         def player(x, y):
             CANVAS.blit(player_img, (x, y))
-
 
         # Main event loop, contains everything that has to stay infinitely consistent
         running = True
@@ -77,6 +89,22 @@ while running:
             if abs(scroll) > bg_width:
                 scroll = 0
 
+            # String formatting to format in leading zeros
+            output_time = "Score {0}".format(total_seconds)
+
+            # Timer going up
+            total_seconds = start_time + (frame_count // frame_rate)
+
+            # Increase frame count
+            frame_count += 10
+
+            # Limit frames per second
+            clock.tick(frame_rate)
+
+            # Blit score to the screen
+            text_score = font_score.render(output_time, True, GREY)
+            CANVAS.blit(text_score, [650, 25])
+
             # Test drawing the enemies
             enemy.update(CANVAS)
 
@@ -85,7 +113,7 @@ while running:
             enemy_timer += 1
             if enemy_timer >= 40:
                 enemySprites.add(DummyEnemy(random.randint(6, 10)))
-                enemySprites.add(DummyEnemy(random.randint(6, 10),-6))
+                enemySprites.add(DummyEnemy(random.randint(6, 10), -6))
                 enemy_timer = 0
 
             for event in pygame.event.get():
@@ -124,6 +152,8 @@ while running:
             # Value of 536 = height of screen - height of sprite (600px - 64px)
             elif player_Y_axis > 536:
                 player_Y_axis = 536
+
+
 
             '''
             # This tracks the player's coordinates
