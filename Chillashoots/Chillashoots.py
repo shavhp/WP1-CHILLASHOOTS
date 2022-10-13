@@ -85,7 +85,7 @@ while running:
             clock.tick(FPS)
             for i in range(0, tiles):
                 screen.blit(bg, (i * bg_width + scroll, 0))
-            scroll -= 5
+            scroll -= 10
             if abs(scroll) > bg_width:
                 scroll = 0
 
@@ -112,8 +112,8 @@ while running:
             enemySprites.update(CANVAS)
             enemy_timer += 1
             if enemy_timer >= 40:
-                enemySprites.add(DummyEnemy(random.randint(6, 10)))
-                enemySprites.add(DummyEnemy(random.randint(6, 10), -6))
+                enemySprites.add(DummyEnemy(random.randint(10, 16)))
+                enemySprites.add(DummyEnemy(random.randint(10, 16), -10))
                 enemy_timer = 0
 
             for event in pygame.event.get():
