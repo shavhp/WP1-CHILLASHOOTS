@@ -47,7 +47,7 @@ enemySprites.add(Lower(10))
 running = True
 while running:
 
-    titel()
+    title()
     sound_maker()
     if more_button.draw(CANVAS):
         print("NO MORE!!!")

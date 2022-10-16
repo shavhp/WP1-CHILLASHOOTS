@@ -1,14 +1,14 @@
-from lib.Titel import *
+from lib.Title import *
 
 def Game_Over():
     # Font and color of title
     TITLE_FONT = pygame.font.Font('../fonts/gametitle_04B_30__.ttf', 60)
-    TITLE_COLOR_1 = (255, 0, 0)
-    TITLE_COLOR_2 = (255, 0, 0)
+    RED = (255, 0, 0)
+
 
     # Create text surface object
-    TITLE_1 = TITLE_FONT.render('GAME', True, TITLE_COLOR_1, None)
-    TITLE_2 = TITLE_FONT.render('OVER!!!', True, TITLE_COLOR_2, None)
+    TITLE_1 = TITLE_FONT.render('GAME', True, RED, None)
+    TITLE_2 = TITLE_FONT.render('OVER!!!', True, RED, None)
 
     # Create rectangular object for text surface object
     TITLE_RECT_1 = TITLE_1.get_rect()
