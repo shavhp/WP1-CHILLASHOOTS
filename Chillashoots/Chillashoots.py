@@ -4,6 +4,7 @@ from lib.Game_Over import *
 from lib.Enemy import *
 from lib.Moving_Background_1 import *
 from lib.Sound import sound_maker
+from lib.Player import *
 
 # Initializes pygame library
 pygame.init()
@@ -56,16 +57,7 @@ while running:
     if start_button.draw(CANVAS):
 
         # Player sprite
-        player_img = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
-        player_x = 25
-        player_y = 320
-        player_x_change = 0
-        player_y_change = 0
-        player_speed = 20
-
-        # Creates function for player to draw image of sprite icon
-        def player(x, y):
-            CANVAS.blit(player_img, (x, y))
+        player_sprite(player_x, player_y)
 
         # Main event loop, contains everything that has to stay infinitely consistent
         running = True
@@ -160,7 +152,7 @@ while running:
 
             player_x += player_x_change
             player_y += player_y_change
-            player(player_x, player_y)
+            player_sprite(player_x, player_y)
             pygame.display.update()
 
             # Clock ticking to the game speed
