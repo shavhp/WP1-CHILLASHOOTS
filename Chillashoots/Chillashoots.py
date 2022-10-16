@@ -16,9 +16,6 @@ start_button = Button(250, 300, start_img, 1)
 high_score_button = Button(250, 430, high_score_img, 1)
 more_button = Button(460, 430, more_img, 1)
 
-# Game speed
-GAME_SPEED = 60
-
 # Define colors
 GREY = (200, 200, 200)
 
@@ -30,6 +27,7 @@ enemy_timer = 0
 
 font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
 
+# Game speed and frame counter
 frame_count = 0
 frame_rate = 60
 start_time = 0
@@ -38,8 +36,8 @@ start_time = 0
 total_seconds = frame_count // frame_rate
 
 # For infinite enemy spawning
-enemySprites = pygame.sprite.RenderPlain(())
 global enemySprites
+enemySprites = pygame.sprite.RenderPlain(())
 # Pre-places an enemy, positions can be modified (x,y)
 enemySprites.add(DummyEnemy(30))
 
@@ -167,7 +165,7 @@ while running:
             pygame.display.update()
 
             # Clock ticking to the game speed
-            clock.tick(GAME_SPEED)
+            clock.tick(frame_rate)
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
