@@ -16,16 +16,17 @@ start_button = Button(250, 300, start_img, 1)
 high_score_button = Button(250, 430, high_score_img, 1)
 more_button = Button(460, 430, more_img, 1)
 
-# Clock and speed
+# Game speed
 GAME_SPEED = 60
-clock = pygame.time.Clock()
-enemy_timer = 0
 
 # Define colors
 GREY = (200, 200, 200)
 
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
+
+# Enemy spawn timers
+enemy_timer = 0
 
 font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
 
@@ -37,8 +38,8 @@ start_time = 0
 total_seconds = frame_count // frame_rate
 
 # For infinite enemy spawning
-global enemySprites
 enemySprites = pygame.sprite.RenderPlain(())
+global enemySprites
 # Pre-places an enemy, positions can be modified (x,y)
 enemySprites.add(DummyEnemy(30))
 
