@@ -60,10 +60,10 @@ while running:
 
         # Player sprite
         player_img = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
-        player_X_axis = 25
-        player_Y_axis = 320
-        player_X_axis_change = 0
-        player_Y_axis_change = 0
+        player_x = 25
+        player_y = 320
+        player_x_change = 0
+        player_y_change = 0
         player_speed = 20
 
         # Define enemies
@@ -71,6 +71,7 @@ while running:
         enemy = Bouncer()
 
         # Creates function for player to draw image of sprite icon
+
         def player(x, y):
             CANVAS.blit(player_img, (x, y))
 
@@ -126,44 +127,42 @@ while running:
                 # Checks whether keystroke is left, right, up or down when pressed
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
-                        player_X_axis_change = -player_speed
+                        player_x_change = -player_speed
                     if event.key == pygame.K_RIGHT:
-                        player_X_axis_change = player_speed
+                        player_x_change = player_speed
                     if event.key == pygame.K_UP:
-                        player_Y_axis_change = -player_speed
+                        player_y_change = -player_speed
                     if event.key == pygame.K_DOWN:
-                        player_Y_axis_change = player_speed
+                        player_y_change = player_speed
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT \
                             or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                        player_X_axis_change = 0
-                        player_Y_axis_change = 0
+                        player_x_change = 0
+                        player_y_change = 0
 
             # Diagonal movement makes sprite disappear in corners
 
             # Value of 736 = width of screen - width of sprite (800px - 64px)
-            if player_X_axis < 0:
-                player_X_axis = 0
-            elif player_X_axis > 736:
-                player_X_axis = 736
-            elif player_Y_axis < 0:
-                player_Y_axis = 0
+            if player_x < 0:
+                player_x = 0
+            elif player_x > 736:
+                player_x = 736
+            elif player_y < 0:
+                player_y = 0
             # Value of 536 = height of screen - height of sprite (600px - 64px)
-            elif player_Y_axis > 536:
-                player_Y_axis = 536
-
-
+            elif player_y > 536:
+                player_y = 536
 
             '''
             # This tracks the player's coordinates
-            print({player_X_axis})
-            print({player_Y_axis})
+            print({player_x})
+            print({player_y})
             '''
 
-            player_X_axis += player_X_axis_change
-            player_Y_axis += player_Y_axis_change
-            player(player_X_axis, player_Y_axis)
+            player_x += player_x_change
+            player_y += player_y_change
+            player(player_x, player_y)
             pygame.display.update()
 
             # Clock ticking to the game speed
