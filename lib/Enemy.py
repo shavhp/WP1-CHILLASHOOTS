@@ -10,7 +10,7 @@ class DummyEnemy(Sprite):
     ):
         entity_count = pygame.sprite.Group()
         entity_visible = pygame.sprite.Group()
-        x_start = 864
+        x_start = 860
         y_start = random.randint(0, 536)
         enemy_image = pygame.image.load("../images/ghost.png").convert_alpha()
 
@@ -82,17 +82,17 @@ class Bouncer(DummyEnemy):
         elif self.rect.bottom >= screen_height:
             self.current_speed[1] = -self.enemy_speed_y
 
-class Line(DummyEnemy):
+class Upper(DummyEnemy):
     def __init__(
             self,
-            enemy_speed_x=-1,
-            enemy_speed_y=random.randint(4, 8)
+            enemy_speed_x=random.randint(3, 6),
+            enemy_speed_y=random.randint(7, 11)
     ):
         super().__init__()
-        x_start = 864
-        y_start = random.randint(0, 536)
+        x_start = 860
+        y_start = random.randint(0, 240)
 
-        self.enemy_speed_x = enemy_speed_x
+        self.enemy_speed_x = -enemy_speed_x
         self.enemy_speed_y = enemy_speed_y
         self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
 
@@ -100,3 +100,36 @@ class Line(DummyEnemy):
         self.rect.x = x_start
         self.rect.y = y_start
 
+    def bounce_if_required(self, screen_width, screen_height):
+        # Enemy reverses when hitting the top side of the display.
+        if self.rect.top <= 0:
+            self.current_speed[1] = self.enemy_speed_y
+        # Enemy reverses when hitting the bottom side of the display.
+        elif self.rect.bottom >= 300:
+            self.current_speed[1] = -self.enemy_speed_y
+
+class Lower(DummyEnemy):
+    def __init__(
+            self,
+            enemy_speed_x=random.randint(3, 6),
+            enemy_speed_y=random.randint(7, 11)
+    ):
+        super().__init__()
+        x_start = 860
+        y_start = random.randint(300, 540)
+
+        self.enemy_speed_x = -enemy_speed_x
+        self.enemy_speed_y = enemy_speed_y
+        self.current_speed = [self.enemy_speed_x, self.enemy_speed_y]
+
+        # These lines are always needed when creating enemy derivatives with different images or starting positions
+        self.rect.x = x_start
+        self.rect.y = y_start
+
+    def bounce_if_required(self, screen_width, screen_height):
+        # Enemy reverses when hitting the top side of the display.
+        if self.rect.top <= 300:
+            self.current_speed[1] = self.enemy_speed_y
+        # Enemy reverses when hitting the bottom side of the display.
+        elif self.rect.bottom >= screen_height:
+            self.current_speed[1] = -self.enemy_speed_y
