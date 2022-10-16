@@ -1,10 +1,11 @@
-import os
 from lib.Button import *
 from lib.Game_Over import *
 from lib.Enemy import *
 from lib.Moving_Background_1 import *
 from lib.Sound import sound_maker
 from lib.Player import *
+
+import os
 
 # Initializes pygame library
 pygame.init()
