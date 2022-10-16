@@ -111,9 +111,11 @@ while running:
             # Spawning enemies
             enemySprites.update(CANVAS)
             enemy_timer += 1
-            if enemy_timer >= 40:
+            if enemy_timer == 30:
                 enemySprites.add(Upper(random.randint(7, 12)))
                 enemySprites.add(Lower(random.randint(7, 12)))
+            elif enemy_timer >= 50:
+                enemySprites.add(BaseEnemy(random.randint(7, 12)))
                 enemy_timer = 0
 
             for event in pygame.event.get():
