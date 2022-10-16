@@ -39,7 +39,8 @@ total_seconds = frame_count // frame_rate
 global enemySprites
 enemySprites = pygame.sprite.RenderPlain(())
 # Pre-places an enemy, positions can be modified (x,y)
-enemySprites.add(DummyEnemy(30))
+enemySprites.add(Upper(10))
+enemySprites.add(Lower(10))
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
@@ -66,7 +67,6 @@ while running:
         player_speed = 20
 
         # Define enemies
-        enemytest = DummyEnemy()
         enemy = Bouncer()
 
         # Creates function for player to draw image of sprite icon
@@ -108,12 +108,12 @@ while running:
             # Test drawing the enemies
             enemy.update(CANVAS)
 
-            # Spawning test enemies
+            # Spawning enemies
             enemySprites.update(CANVAS)
             enemy_timer += 1
             if enemy_timer >= 40:
-                enemySprites.add(DummyEnemy(random.randint(10, 16)))
-                enemySprites.add(DummyEnemy(random.randint(10, 16), -10))
+                enemySprites.add(Upper(random.randint(7, 12)))
+                enemySprites.add(Lower(random.randint(7, 12)))
                 enemy_timer = 0
 
             for event in pygame.event.get():
