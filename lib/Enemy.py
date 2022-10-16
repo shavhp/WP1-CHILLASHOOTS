@@ -2,11 +2,11 @@ import pygame
 from pygame.sprite import Sprite
 import random
 
-class DummyEnemy(Sprite):
+class BaseEnemy(Sprite):
     def __init__(
             self,
             enemy_speed_x=random.randint(6, 10),
-            enemy_speed_y=6
+            enemy_speed_y=random.randint(6, 10)
     ):
         entity_count = pygame.sprite.Group()
         entity_visible = pygame.sprite.Group()
@@ -48,7 +48,7 @@ class DummyEnemy(Sprite):
         self.current_speed[1] = -self.current_speed[1]
 
 
-class Bouncer(DummyEnemy):
+class Bouncer(BaseEnemy):
     def __init__(
             self,
             enemy_speed_x=6,
@@ -82,7 +82,7 @@ class Bouncer(DummyEnemy):
         elif self.rect.bottom >= screen_height:
             self.current_speed[1] = -self.enemy_speed_y
 
-class Upper(DummyEnemy):
+class Upper(BaseEnemy):
     def __init__(
             self,
             enemy_speed_x=random.randint(3, 6),
@@ -108,7 +108,7 @@ class Upper(DummyEnemy):
         elif self.rect.bottom >= 300:
             self.current_speed[1] = -self.enemy_speed_y
 
-class Lower(DummyEnemy):
+class Lower(BaseEnemy):
     def __init__(
             self,
             enemy_speed_x=random.randint(3, 6),
