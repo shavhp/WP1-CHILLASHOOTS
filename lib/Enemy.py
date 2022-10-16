@@ -51,8 +51,8 @@ class BaseEnemy(Sprite):
 class Bouncer(BaseEnemy):
     def __init__(
             self,
-            enemy_speed_x=6,
-            enemy_speed_y=6
+            enemy_speed_x=10,
+            enemy_speed_y=10
     ):
         enemy_image = pygame.image.load("../images/EnemyBird.png")
         x_start = 400,
