@@ -24,6 +24,7 @@ clock = pygame.time.Clock()
 
 # Enemy spawn timers
 enemy_timer = 0
+bouncer_enemy_timer = 0
 
 font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
 
@@ -66,11 +67,7 @@ while running:
         player_y_change = 0
         player_speed = 20
 
-        # Define enemies
-        enemy = Bouncer()
-
         # Creates function for player to draw image of sprite icon
-
         def player(x, y):
             CANVAS.blit(player_img, (x, y))
 
@@ -105,9 +102,6 @@ while running:
             text_score = font_score.render(output_time, True, GREY)
             CANVAS.blit(text_score, [650, 25])
 
-            # Test drawing the enemies
-            enemy.update(CANVAS)
-
             # Spawning enemies
             enemySprites.update(CANVAS)
             enemy_timer += 1
@@ -117,6 +111,13 @@ while running:
             elif enemy_timer >= 50:
                 enemySprites.add(BaseEnemy(random.randint(7, 12)))
                 enemy_timer = 0
+
+            # Time-triggered enemy spawning
+            if total_seconds >= 90:
+                bouncer_enemy_timer += 1
+                if bouncer_enemy_timer == 90:
+                    enemySprites.add(Bouncer(10))
+                    bouncer_enemy_timer = 0
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
