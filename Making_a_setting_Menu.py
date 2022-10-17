@@ -19,12 +19,13 @@ BACKGROUND_COLOR = (0, 0, 0)
 # This Initialize a window or screen for display (How big u want the screen to be)
 canvas = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+
 def quit_game_requested():
     stopping_game = False
     keys = pygame.key.get_pressed()
     for event in pygame.event.get():
         # if i press ESC-button then the program will close.
-        if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
+        if event.type == pygame.QUIT:
             stopping_game = True
             break
     return stopping_game
@@ -72,7 +73,6 @@ while not quit_game_requested():
     else:
         canvas.blit(BACKGROUND, (0, 0))
         draw_text("Press SPACE to continue", font, TEXT_COL, 290, 250)
-
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:

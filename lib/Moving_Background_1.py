@@ -10,6 +10,3 @@ bg = pygame.image.load("../images/bg_stars_game.png").convert()
 bg_width = bg.get_width()
 scroll = 0
 tiles = math.ceil(SCREEN_WIDTH / bg_width + 1)
-print(tiles)
-
-

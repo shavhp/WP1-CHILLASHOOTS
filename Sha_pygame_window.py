@@ -15,6 +15,9 @@ SCREEN_HEIGHT = 600
 
 CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+# Define colors
+GREY = (200, 200, 200)
+
 # Show background image
 BACKGROUND = pygame.image.load(os.path.join('images', 'background-galaxy.jpg'))
 
@@ -23,19 +26,49 @@ pygame.display.set_caption("ChillaShoots")
 icon = pygame.image.load(os.path.join('images', 'chinchilla_icon_sha.png'))
 pygame.display.set_icon(icon)
 
-# Player sprite
+player_x = 25
+player_y = 320
+player_x_change = 0
+player_y_change = 0
+player_speed = 20
 
-player_img = pygame.image.load(os.path.join('images', 'chinchilla_sprite_light.png'))
-player_X_axis = 25
-player_Y_axis = 320
-player_X_axis_change = 0
-player_Y_axis_change = 0
-player_speed = 0.25
 
-# Creates function for player to draw image of sprite icon
-def player(x, y):
-    CANVAS.blit(player_img, (x, y))
+class Player(pygame.sprite.Sprite):
+    # Sprite for the player
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((50, 40))
+        self.image.fill((200, 200, 200))
+        # Defines rectangle around image, so program can define where spire is or needs to be
+        # Auto-detect rectangle around image based on img measurements
+        self.rect = self.image.get_rect()
+        self.rect.centerx = player_x
+        self.rect.centery = player_y
+        self.speed = 0
+    def update(self):
+        self.speed = 0
+        keystate = pygame.key.get_pressed()
+        if keystate[pygame.K_LEFT]:
+            self.speed = player_speed
+        if keystate[pygame.K_RIGHT]:
+            self.speed = player_speed
 
+player_sprite = pygame.sprite.Group()
+chilla_player = Player()
+player_sprite.add(chilla_player)
+
+
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
+
+font_score = pygame.font.Font('fonts/superstar_memesbruh03.ttf', 25)
+
+frame_count = 0
+frame_rate = 60
+start_time = 0
+
+# Calculate total seconds
+total_seconds = frame_count // frame_rate
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
@@ -45,6 +78,22 @@ while running:
     # Background image and coordinates of image appearance
     CANVAS.blit(BACKGROUND, (0, 0))
 
+    # String formatting to format in leading zeros
+    output_time = "Score {0}".format(total_seconds)
+
+    # Timer going up
+    total_seconds = start_time + (frame_count // frame_rate)
+
+    # Increase frame count
+    frame_count += 10
+
+    # Limit frames per second
+    clock.tick(frame_rate)
+
+    # Blit score to the screen
+    text_score = font_score.render(output_time, True, GREY)
+    CANVAS.blit(text_score, [650, 25])
+
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             running = False
@@ -52,34 +101,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        # Checks whether keystroke is left, right, up or down when pressed
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player_X_axis_change = -player_speed
-            if event.key == pygame.K_RIGHT:
-                player_X_axis_change = player_speed
-            if event.key == pygame.K_UP:
-                player_Y_axis_change = -player_speed
-            if event.key == pygame.K_DOWN:
-                player_Y_axis_change = player_speed
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                player_X_axis_change = 0
-                player_Y_axis_change = 0
-
-    # Diagonal movement makes sprite disappear in corners
-
-    # Value of 736 = width of screen - width of sprite (800px - 64px)
-    if player_X_axis < 0:
-        player_X_axis = 0
-    elif player_X_axis > 736:
-        player_X_axis = 736
-    elif player_Y_axis < 0:
-        player_Y_axis = 0
-    # Value of 536 = height of screen - height of sprite (600px - 64px)
-    elif player_Y_axis > 536:
-        player_Y_axis = 536
 
     '''
     # This tracks the player's coordinates
@@ -87,7 +108,5 @@ while running:
     print({player_Y_axis})
     '''
 
-    player_X_axis += player_X_axis_change
-    player_Y_axis += player_Y_axis_change
-    player(player_X_axis, player_Y_axis)
+    chilla_player.update()
     pygame.display.update()

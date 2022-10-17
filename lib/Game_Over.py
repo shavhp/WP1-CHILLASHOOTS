@@ -1,16 +1,14 @@
-from lib.Screen import *
-BACKGROUND = pygame.image.load('../images/background-galaxy.jpg')
+from lib.Title import *
 
 
-def titel():
+def Game_Over():
     # Font and color of title
     TITLE_FONT = pygame.font.Font('../fonts/gametitle_04B_30__.ttf', 60)
-    TITLE_COLOR_1 = (200, 200, 200)
-    TITLE_COLOR_2 = (0, 0, 0)
+    RED = (255, 0, 0)
 
     # Create text surface object
-    TITLE_1 = TITLE_FONT.render('CHILLA', True, TITLE_COLOR_1, None)
-    TITLE_2 = TITLE_FONT.render('SHOOTS', True, TITLE_COLOR_2, None)
+    TITLE_1 = TITLE_FONT.render('GAME', True, RED, None)
+    TITLE_2 = TITLE_FONT.render('OVER!!!', True, RED, None)
 
     # Create rectangular object for text surface object
     TITLE_RECT_1 = TITLE_1.get_rect()
@@ -19,11 +17,6 @@ def titel():
     # Set center of rectangular object
     TITLE_RECT_1.center = (SCREEN_WIDTH // 3.09, SCREEN_HEIGHT // 3)
     TITLE_RECT_2.center = (SCREEN_WIDTH // 1.39, SCREEN_HEIGHT // 3)
-
-    # Title and Icon
-    pygame.display.set_caption("ChillaShoots")
-    icon = pygame.image.load('../images/chinchilla_icon_sha.png')
-    pygame.display.set_icon(icon)
 
     # Gets drawn first
     # Background image and coordinates of image appearance
