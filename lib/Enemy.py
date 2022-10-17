@@ -2,14 +2,13 @@ import pygame
 from pygame.sprite import Sprite
 import random
 
+
 class BaseEnemy(Sprite):
     def __init__(
             self,
             enemy_speed_x=random.randint(6, 10),
             enemy_speed_y=random.randint(6, 10)
     ):
-        entity_count = pygame.sprite.Group()
-        entity_visible = pygame.sprite.Group()
         x_start = 860
         y_start = random.randint(0, 536)
         enemy_image = pygame.image.load("../images/ghost.png").convert_alpha()
@@ -55,7 +54,7 @@ class Bouncer(BaseEnemy):
             enemy_speed_y=10
     ):
         enemy_image = pygame.image.load("../images/EnemyBird.png")
-        x_start = 400,
+        x_start = 664,
         y_start = random.randint(0, 536)
 
         # Create index thing of the speed variables for reversing
@@ -82,6 +81,7 @@ class Bouncer(BaseEnemy):
         elif self.rect.bottom >= screen_height:
             self.current_speed[1] = -self.enemy_speed_y
 
+
 class Upper(BaseEnemy):
     def __init__(
             self,
@@ -107,6 +107,7 @@ class Upper(BaseEnemy):
         # Enemy reverses when hitting the bottom side of the display.
         elif self.rect.bottom >= 300:
             self.current_speed[1] = -self.enemy_speed_y
+
 
 class Lower(BaseEnemy):
     def __init__(
