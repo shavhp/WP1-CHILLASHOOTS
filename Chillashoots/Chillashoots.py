@@ -98,7 +98,7 @@ while running:
                 enemySprites.add(Upper(random.randint(7, 12)))
                 enemySprites.add(Lower(random.randint(7, 12)))
             elif enemy_timer >= 50:
-                enemySprites.add(BaseEnemy(random.randint(7, 12)))
+                enemySprites.add(BaseEnemy(random.randint(8, 12)))
                 enemy_timer = 0
 
             # Time-triggered enemy spawning
