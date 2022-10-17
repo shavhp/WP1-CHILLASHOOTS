@@ -41,7 +41,7 @@ total_seconds = frame_count // frame_rate
 # For infinite enemy spawning
 global enemySprites
 enemySprites = pygame.sprite.RenderPlain(())
-# Pre-places an enemy, positions can be modified (x,y)
+# Pre-places an enemy, speed can be modified (x,y)
 enemySprites.add(Upper(10))
 enemySprites.add(Lower(10))
 
