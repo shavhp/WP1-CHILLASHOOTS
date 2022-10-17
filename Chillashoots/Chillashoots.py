@@ -145,6 +145,7 @@ while running:
             elif player_y > 536:
                 player_y = 536
 
+
             '''
             # This tracks the player's coordinates
             print({player_x})
