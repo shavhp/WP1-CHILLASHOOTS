@@ -1,5 +1,6 @@
 from pygame import mixer
 
+
 def sound_maker():
     # Instantiate mixer
     mixer.init()
@@ -12,4 +13,3 @@ def sound_maker():
 
     # Play the music
     mixer.music.play()
-
