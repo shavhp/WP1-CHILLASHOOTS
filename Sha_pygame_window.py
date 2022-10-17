@@ -4,6 +4,8 @@ import pygame
 # Imports OS for file paths
 import os
 
+import pygame.sprite
+
 # Set up pygame.
 pygame.init()
 
@@ -43,7 +45,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.centerx = player_x
         self.rect.centery = player_y
         self.speed = 0
-
     def update(self):
         self.speed = 0
         keystate = pygame.key.get_pressed()

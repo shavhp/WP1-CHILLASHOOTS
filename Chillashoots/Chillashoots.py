@@ -41,7 +41,7 @@ total_seconds = frame_count // frame_rate
 # For infinite enemy spawning
 global enemySprites
 enemySprites = pygame.sprite.RenderPlain(())
-# Pre-places an enemy, positions can be modified (x,y)
+# Pre-places an enemy, speed can be modified (x,y)
 enemySprites.add(Upper(10))
 enemySprites.add(Lower(10))
 
@@ -98,7 +98,7 @@ while running:
                 enemySprites.add(Upper(random.randint(7, 12)))
                 enemySprites.add(Lower(random.randint(7, 12)))
             elif enemy_timer >= 50:
-                enemySprites.add(BaseEnemy(random.randint(7, 12)))
+                enemySprites.add(BaseEnemy(random.randint(8, 12)))
                 enemy_timer = 0
 
             # Time-triggered enemy spawning
