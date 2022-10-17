@@ -4,6 +4,8 @@ import pygame
 # Imports OS for file paths
 import os
 
+import pygame.sprite
+
 # Set up pygame.
 pygame.init()
 
@@ -29,7 +31,6 @@ player_Y_axis = 320
 player_X_axis_change = 0
 player_Y_axis_change = 0
 player_speed = 0.25
-
 
 # Creates function for player to draw image of sprite icon
 def player(x, y):
