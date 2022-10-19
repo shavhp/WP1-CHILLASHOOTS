@@ -21,6 +21,14 @@ more_button = Button(460, 430, more_img, 1)
 # Define colors
 GREY = (200, 200, 200)
 
+
+bulletImg = pygame.image.load('../images/bullet.png')
+bulletX = player_x
+bulletY = player_y
+bulletX_change = 50
+bulletY_change = 0
+bullet_state = "ready"
+
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
@@ -44,6 +52,11 @@ enemySprites = pygame.sprite.RenderPlain(())
 # Pre-places an enemy, speed can be modified (x,y)
 enemySprites.add(Upper(10))
 enemySprites.add(Lower(10))
+
+def fire_bullet(x, y):
+    global bullet_state
+    bullet_state = "fire"
+    CANVAS.blit(bulletImg, ( x + 50 , y + 10 ))
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
@@ -125,6 +138,10 @@ while running:
                         player_y_change = -player_speed
                     if event.key == pygame.K_DOWN:
                         player_y_change = player_speed
+                    if event.key == pygame.K_SPACE:
+                        if bullet_state == "ready":
+                            bulletY = player_y
+                            fire_bullet(bulletY, bulletX)
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT \
@@ -144,6 +161,14 @@ while running:
             # Value of 536 = height of screen - height of sprite (600px - 64px)
             elif player_y > 536:
                 player_y = 536
+
+            if bulletX >= 800:
+                bulletX = player_x
+                bullet_state = "ready"
+
+            if bullet_state == "fire":
+                fire_bullet(bulletX, bulletY)
+                bulletX += bulletX_change
 
 
             '''
