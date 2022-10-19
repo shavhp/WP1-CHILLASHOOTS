@@ -70,7 +70,7 @@ class Bouncer(BaseEnemy):
     def bounce_if_required(self, screen_width, screen_height):
         # Enemy reverses when hitting the left side of the display.
         if self.rect.left <= 0:
-            self.current_speed[0] = self.enemy_speed_x
+            self.current_speed[0] = self.enemy_speed_x - (self.enemy_speed_x / 2)
         # Enemy reverses when hitting the right side of the display.
         elif self.rect.right >= screen_width:
             self.current_speed[0] = -self.enemy_speed_x
