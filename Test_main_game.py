@@ -71,9 +71,13 @@ while running:
 
     def player_sprite(x, y):
         player_img = pygame.image.load(os.path.join('images', 'chinchilla_sprite_light.png'))
+        player_rect = player_img.get_rect()
+        player_rect = player_rect.move(player_x_change, player_y_change)
+        pygame.draw.rect(player_rect)
+        print(player_rect)
+        print(player_x_change, player_y_change)
         # Creates function for player to draw image of sprite icon on given coordinates
-
-        CANVAS.blit(player_img, (x, y))
+        CANVAS.blit(player_img, (x, y), player_rect)
 
     # String formatting to format in leading zeros
     output_time = "Score {0}".format(total_seconds)
