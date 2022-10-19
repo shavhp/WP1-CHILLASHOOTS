@@ -43,6 +43,10 @@ class BaseEnemy(Sprite):
         elif self.rect.bottom >= screen_height:
             self.current_speed[1] = -self.enemy_speed_y
 
+        # Enemy gets deleted when going off-screen.
+        if self.rect.left <= 64:
+            pygame.sprite.Sprite.kill(self)
+
     def reverse(self):
         self.current_speed[0] = -self.current_speed[0]
         self.current_speed[1] = -self.current_speed[1]
@@ -109,6 +113,10 @@ class Upper(BaseEnemy):
         elif self.rect.bottom >= 300:
             self.current_speed[1] = -self.enemy_speed_y
 
+        # Enemy gets deleted when going off-screen.
+        if self.rect.left <= 64:
+            pygame.sprite.Sprite.kill(self)
+
 
 class Lower(BaseEnemy):
     def __init__(
@@ -135,3 +143,7 @@ class Lower(BaseEnemy):
         # Enemy reverses when hitting the bottom side of the display.
         elif self.rect.bottom >= screen_height:
             self.current_speed[1] = -self.enemy_speed_y
+
+        # Enemy gets deleted when going off-screen.
+        if self.rect.left <= 64:
+            pygame.sprite.Sprite.kill(self)
