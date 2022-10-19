@@ -1,5 +1,6 @@
 # Import pygame module
 import pygame
+from Enemy import *
 
 # Imports OS for file paths
 import os
@@ -47,6 +48,10 @@ frame_count = 0
 frame_rate = 60
 start_time = 0
 
+enemy_timer = 0
+global enemySprites
+enemySprites = pygame.sprite.RenderPlain(())
+
 # Calculate total seconds
 total_seconds = frame_count // frame_rate
 
@@ -85,6 +90,13 @@ while running:
     # Blit score to the screen
     text_score = font_score.render(output_time, True, GREY)
     CANVAS.blit(text_score, [650, 25])
+
+    # Enemy timer
+    enemySprites.update(CANVAS)
+    enemy_timer += 1
+    if enemy_timer == 50:
+        enemySprites.add(BaseEnemy(random.randint(2, 2)))
+        enemy_timer = 0
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:

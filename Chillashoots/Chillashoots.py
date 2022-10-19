@@ -1,10 +1,10 @@
 from lib.Button import *
-from lib.Game_Over import *
+from lib.Setting_menu import *
 from lib.Enemy import *
 from lib.Moving_Background_1 import *
 from lib.Sound import sound_maker
 from lib.Player import *
-
+from lib.Setting_menu import setting_page
 import os
 
 # Initializes pygame library
@@ -61,13 +61,23 @@ def fire_bullet(x, y):
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
 while running:
-
     title()
     sound_maker()
     if more_button.draw(CANVAS):
-        print("NO MORE!!!")
+        running = True
+        while running:
+            setting_page()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    running = False
+
+                if event.type == pygame.QUIT:
+                    running = False
+
+            pygame.display.update()
+
     if high_score_button.draw(CANVAS):
-        Game_Over()
+        print("NO highscore")
     if start_button.draw(CANVAS):
 
         # Player sprite
