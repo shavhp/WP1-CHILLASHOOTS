@@ -3,16 +3,17 @@ from pygame.sprite import Sprite
 import random
 import os
 
+# TEMP FOR TESTING
 
 class BaseEnemy(Sprite):
     def __init__(
             self,
-            enemy_speed_x=random.randint(6, 10),
-            enemy_speed_y=random.randint(6, 10)
+            enemy_speed_x=random.randint(2, 4),
+            enemy_speed_y=random.randint(2, 4)
     ):
         x_start = 860
         y_start = random.randint(0, 536)
-        enemy_image = pygame.image.load(os.path.join('../images', 'ghost.png')).convert_alpha()
+        enemy_image = pygame.image.load(os.path.join('images', 'ghost.png')).convert_alpha()
 
         # Create index thing of the speed variables for reversing
         super().__init__()
@@ -54,7 +55,7 @@ class Bouncer(BaseEnemy):
             enemy_speed_x=10,
             enemy_speed_y=10
     ):
-        enemy_image = pygame.image.load(os.path.join('../images', 'EnemyBird.png'))
+        enemy_image = pygame.image.load(os.path.join('images', 'EnemyBird.png'))
         x_start = 664,
         y_start = random.randint(0, 536)
 
