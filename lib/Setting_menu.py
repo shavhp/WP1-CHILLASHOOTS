@@ -8,7 +8,7 @@ def setting_page():
     BLACK = (0, 0, 0)
 
     # Create text surface object
-    TITLE_1 = TITLE_FONT.render('Setting', True, GREY, None)
+    TITLE_1 = TITLE_FONT.render('Settings', True, GREY, None)
 
 
     # Create rectangular object for text surface object
