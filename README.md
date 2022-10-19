@@ -1,47 +1,59 @@
-Chillaschoots : 
+==== CHILLASHOOTS ====
 
-Een game gemaakt met pygame waarin jij een chinchilla bent door de ruimte tegen geesten vecht. Het doel is zo lang mogelijk in leven te blijven terwijl er steeds meer geesten op je af komen.
+Ontwikkeld met Pygame.
 
-Chillaschoots instaleren : 
+In CHILLASHOOTS ben jij een Chilla de Chinchilla: een chinchilla die door de ruimte vliegt.
+
+Met zijn laserogen bestrijdt hij zijn natuurlijke vijanden: aliengeesten en alienduiven.
+
+Het doel is om zo lang mogelijk in leven te blijven terwijl er steeds meer vijanden op je afkomen.
+
+Hoe langer je in leven blijft, hoe meer punten je krijgt.
+
+
+================ CHILLASHOOTS INSTALLEREN ================
 
 '''
-Stap 1: Instaleer python op https://www.python.org/downloads/
+Stap 1 : Installeer Python via https://www.python.org/downloads/
 
-Stap 2: Klik op de bestand die je hebt gedownload. Bij het installeren van python, vergeet niet Add to path aan te klikken.
+Stap 2 : Klik op het bestand dat je hebt gedownload. Tijdens het installeren van Python is het belangrijk dat je "Add to path" aanklikt.
 
-Stap 3: Open command prompt/terminal op je Windows zoekbalk.
+Stap 3 : Open de Opdrachtprompt/terminal. Deze kun je vinden via je Windows zoekbalk.
 
-Stap 4: typ 'pip install pygame'
+Stap 4 : Type <pip install pygame>.
 
-Stap 5: Ga vervolgens op https://github.com/Rac-Software-Development/werkplaats-1-pygame-chillabeas.
+Stap 5 : Ga vervolgens naar https://github.com/Rac-Software-Development/werkplaats-1-pygame-chillabeas.
 
-Stap 6: Open de main branch.
+Stap 6 : Open de 'main branch'.
 
-Stap 7: Klik op de knop "Code" en download het .zip bestand.
+Stap 7 : Klik op de knop "Code" en download het zipbestand.
 
-Stap 8: Pak het .zip bestand uit.
+Stap 8 : Pak het zipbestand uit.
 
-Stap 9: Dubbelklik main.py
+Stap 9 : Dubbelklik op het bestand main.py.
 
-Stap 10: Klik op PLAY om de game te starten.
+Stap 10 : Klik op PLAY om de game te starten.
 
-Stap 11: Klik escape om het spel te verlaten
+Stap 11 : Druk op Esc op je toetsenbord om het spel te verlaten
+
 '''
 
-Ingame :
+================ IN HET SPEL ================
 
-De besturingen : 
-A = Je chilla naar links laten bewegen
 
-S = Je chilla naar beneden laten bewegen
+BESTURING VAN DE GAME MET JE TOETSENBORD :
 
-W = Je chilla naar boven laten bewegen
+← toets = CHILLA beweegt naar links
 
-D = Je chilla naar rechts laten bewegen
+↓ toets = CHILLA beweegt naar beneden
 
-Spacebar = Je chilla laten schieten
+↑ toets = CHILLA beweegt naar boven
 
-Escapekey = Het spel afsluiten
+→ toets = CHILLA beweegt naar rechts
+
+SPATIE = CHILLA schiet met laserogen
+
+ESCAPE = Het spel afsluiten
 
 
 
