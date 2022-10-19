@@ -26,3 +26,6 @@ def setting_page():
     # Background image and coordinates of image appearance
     CANVAS.blit(BACKGROUND, (0, 0))
     CANVAS.blit(TITLE_1, TITLE_RECT_1)
+
+    color_white = (0.2, 0.4, 0.6)
+    pygame.draw.rect(CANVAS, color_white, pygame.Rect(50, 200, 700, 350), 0, 7)

@@ -48,7 +48,6 @@ enemySprites.add(Lower(10))
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
 while running:
-
     title()
     sound_maker()
     if more_button.draw(CANVAS):
