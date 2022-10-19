@@ -25,17 +25,22 @@ Stap 9: Dubbelklik main.py
 
 Stap 10: Klik op PLAY om de game te starten.
 
-Stap 11: Klik escape om het spel te verlatne
+Stap 11: Klik escape om het spel te verlaten
 '''
 
 Ingame :
 
 De besturingen : 
 A = Je chilla naar links laten bewegen
+
 S = Je chilla naar beneden laten bewegen
+
 W = Je chilla naar boven laten bewegen
+
 D = Je chilla naar rechts laten bewegen
+
 Spacebar = Je chilla laten schieten
+
 Escapekey = Het spel afsluiten
 
 
