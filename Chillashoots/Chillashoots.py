@@ -75,7 +75,6 @@ while running:
                     running = False
 
             pygame.display.update()
-
     if high_score_button.draw(CANVAS):
         print("NO highscore")
     if start_button.draw(CANVAS):
