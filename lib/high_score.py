@@ -4,7 +4,7 @@ def get_high_score():
 
     # Try to read high score from file
     try:
-        high_score_file = open("high_score.txt", "r")
+        high_score_file = open("/high_score.txt", "r")
         high_score = int(high_score_file.read())
         high_score_file.close()
         print("The high score is", high_score)
@@ -20,7 +20,7 @@ def get_high_score():
 def save_high_score(new_high_score):
     try:
         # Write file to disk
-        high_score_file = open("high_score.txt", "w")
+        high_score_file = open("/high_score.txt", "w")
         high_score_file.write(str(new_high_score))
         high_score_file.close()
     except IOError:
