@@ -150,6 +150,7 @@ while running:
                         player_y_change = player_speed
                     if event.key == pygame.K_SPACE:
                         if bullet_state == "ready":
+                            bulletX = player_x
                             bulletY = player_y
                             fire_bullet(bulletY, bulletX)
 
@@ -173,7 +174,6 @@ while running:
                 player_y = 536
 
             if bulletX >= 800:
-                bulletX = player_x
                 bullet_state = "ready"
 
             if bullet_state == "fire":
