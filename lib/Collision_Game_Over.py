@@ -1,82 +1,104 @@
-# Import pygame module
-import pygame
-from Enemy import *
+import pygame.sprite
 
-# Imports OS for file paths
-import os
+from lib.Enemy import *
+from lib.Screen import *
+WIDTH = 800
+HEIGHT = 600
+FPS = 60
 
-# Set up pygame.
+# define colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
 pygame.init()
-
-# Create screen
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-
-CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-# Define colors
-GREY = (200, 200, 200)
-
-# Show background image
-BACKGROUND = pygame.image.load(os.path.join('../images', 'background-galaxy.jpg'))
-
-# Title and Icon
-pygame.display.set_caption("ChillaShoots")
-icon = pygame.image.load(os.path.join('../images', 'chinchilla_icon_sha.png'))
-pygame.display.set_icon(icon)
-
-player_x = 25
-player_y = 320
-player_x_change = 0
-player_y_change = 0
-player_speed = 7
-
-# Used to manage how fast the screen updates
-clock = pygame.time.Clock()
-
-font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
-
+screen = pygame.display.set_mode((800, 600))
+enemy_timer = 0
+enemySprites = pygame.sprite.RenderPlain(())
 frame_count = 0
 frame_rate = 60
 start_time = 0
+player_speed = 20
 
-enemy_timer = 0
-global enemySprites
-enemySprites = pygame.sprite.RenderPlain(())
+all_sprites = pygame.sprite.Group()
 
 # Calculate total seconds
 total_seconds = frame_count // frame_rate
+class Mob(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((30, 40))
+        self.image.fill(RED)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(WIDTH - self.rect.width)
+        self.rect.y = random.randrange(-100, -40)
+        self.speedy = random.randrange(1, 8)
+        self.speedx = random.randrange(-3, 3)
 
-# Main event loop, contains everything that has to stay infinitely consistent
-running = True
-while running:
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+        if self.rect.top > HEIGHT + 10 or self.rect.left < -25 or self.rect.right > WIDTH + 20:
+            self.rect.y = random.randrange(-100, -40)
+            self.rect.x = random.randrange(WIDTH - self.rect.width)
+            self.speedy = random.randrange(1, 8)
 
-    # Gets drawn first
-    # Background image and coordinates of image appearance
-    CANVAS.blit(BACKGROUND, (0, 0))
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
+        self.rect = self.image.get_rect()
+        self.rect.top = 25
+        self.rect.bottom = 320
+        self.speedx = 0
+        self.speedy = 0
+
+    def update(self):
+        self.speedx = 0
+        self.speedy = 0
+        userinput = pygame.key.get_pressed()
+        if userinput[pygame.K_LEFT]:
+            self.speedx = -player_speed
+        if userinput[pygame.K_RIGHT]:
+            self.speedx = +player_speed
+        if userinput[pygame.K_UP]:
+            self.speedy = -player_speed
+        if userinput[pygame.K_DOWN]:
+            self.speedy = +player_speed
+
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+        if self.rect.right > 800:
+            self.rect.right = 800
+        if self.rect.left < 0:
+            self.rect.left = 0
 
 
-    def player_sprite(x, y):
-        player_img = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
-        # Creates function for player to draw image of sprite icon on given coordinates
 
-        CANVAS.blit(player_img, (x, y))
 
-    # String formatting to format in leading zeros
-    output_time = "Score {0}".format(total_seconds)
+all_sprites = pygame.sprite.Group()
+mobs = pygame.sprite.Group()
+player = Player()
+all_sprites.add(player)
+for i in range(8):
+    m = Mob()
+    all_sprites.add(m)
+    mobs.add(m)
+def quit_game():
+    global run
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
 
-    # Timer going up
-    total_seconds = start_time + (frame_count // frame_rate)
+run = True
+while run :
+    quit_game()
+    screen.fill((255,255,255))
+    # Diagonal movement makes sprite disappear in corners
 
-    # Increase frame count
-    frame_count += 10
 
-    # Limit frames per second
-    clock.tick(frame_rate)
-
-    # Blit score to the screen
-    text_score = font_score.render(output_time, True, GREY)
-    CANVAS.blit(text_score, [650, 25])
 
     # Enemy timer
     enemySprites.update(CANVAS)
@@ -85,54 +107,10 @@ while running:
         enemySprites.add(BaseEnemy(random.randint(2, 2)))
         enemy_timer = 0
 
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            running = False
-
-        if event.type == pygame.QUIT:
-            running = False
-
-        # Checks whether keystroke is left, right, up or down when pressed
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player_x_change = -player_speed
-            if event.key == pygame.K_RIGHT:
-                player_x_change = player_speed
-            if event.key == pygame.K_UP:
-                player_y_change = -player_speed
-            if event.key == pygame.K_DOWN:
-                player_y_change = player_speed
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT \
-                    or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                player_x_change = 0
-                player_y_change = 0
-
-        # Diagonal movement makes sprite disappear in corners
-        # Value of 736 = width of screen - width of sprite (800px - 64px)
-        if player_x < 0:
-            player_x = 0
-        elif player_x > 736:
-            player_x = 736
-        elif player_y < 0:
-            player_y = 0
-        # Value of 536 = height of screen - height of sprite (600px - 64px)
-        elif player_y > 536:
-            player_y = 536
-
-
-    '''
-    # This tracks the player's coordinates
-    print({player_X_axis})
-    print({player_Y_axis})
-    '''
-
-    player_x += player_x_change
-    player_y += player_y_change
-    player_sprite(player_x, player_y)
-    rect1 = player_x or player_y
-    rect2 = pygame.Rect(0, 0, 75, 75)
-    collide = rect1.colliderect(rect2)
-    hit = pygame.sprite.spritecollide(player, wall_group, True)
+    pygame.time.delay(30)
+    all_sprites.update()
+    hits = pygame.sprite.spritecollide(player, mobs, False)
+    if hits:
+        run = False
+    all_sprites.draw(screen)
     pygame.display.update()
