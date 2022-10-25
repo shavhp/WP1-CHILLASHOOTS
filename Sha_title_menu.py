@@ -13,16 +13,16 @@ SCREEN_HEIGHT = 600
 CANVAS = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Show background image
-BACKGROUND = pygame.image.load(os.path.join('images', 'background-galaxy.jpg'))
+BACKGROUND = CANVAS.fill((0, 0, 0))
 
 # Font and color of title
 TITLE_FONT = pygame.font.Font(os.path.join('fonts', 'gametitle_04B_30__.ttf'), 60)
-TITLE_COLOR_1 = (200, 200, 200)
-TITLE_COLOR_2 = (0, 0, 0)
+TITLE_COLOR_1 = (255, 0, 0)
+TITLE_COLOR_2 = (255, 0, 0)
 
 # Create text surface object
-TITLE_1 = TITLE_FONT.render('CHILLA', True, TITLE_COLOR_1, None)
-TITLE_2 = TITLE_FONT.render('SHOOTS', True, TITLE_COLOR_2, None)
+TITLE_1 = TITLE_FONT.render('GAME', True, TITLE_COLOR_1, None)
+TITLE_2 = TITLE_FONT.render('OVER!!', True, TITLE_COLOR_2, None)
 
 # Create rectangular object for text surface object
 TITLE_RECT_1 = TITLE_1.get_rect()
@@ -43,7 +43,6 @@ while running:
 
     # Gets drawn first
     # Background image and coordinates of image appearance
-    CANVAS.blit(BACKGROUND, (0, 0))
     CANVAS.blit(TITLE_1, TITLE_RECT_1)
     CANVAS.blit(TITLE_2, TITLE_RECT_2)
 

@@ -26,24 +26,49 @@ all_sprites = pygame.sprite.Group()
 
 # Calculate total seconds
 total_seconds = frame_count // frame_rate
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        super(Enemy, self).__init__()
+        self.surf = pygame.image.load(os.path.join('../images', 'ghost.png'))
+        # The starting position is randomly generated, as is the speed
+        self.rect = self.surf.get_rect(
+            center=(
+                random.randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 100),
+                random.randint(0, SCREEN_HEIGHT),
+            )
+        )
+        self.speed = random.randint(5, 20)
+
+    # Move the enemy based on speed
+    # Remove it when it passes the left edge of the screen
+    def update(self):
+        self.rect.move_ip(-self.speed, 0)
+        if self.rect.right < 0:
+            self.kill()
+
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((30, 40))
         self.image.fill(RED)
-        self.rect = self.image.get_rect()
-        self.rect.x = random.randrange(WIDTH - self.rect.width)
-        self.rect.y = random.randrange(-100, -40)
-        self.speedy = random.randrange(1, 8)
-        self.speedx = random.randrange(-3, 3)
+        self.rect = self.image.get_rect(
+            center=(
+                random.randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 100),
+                random.randint(0, SCREEN_HEIGHT)
+            )
+        )
+        self.speed = random.randint(5, 20)
 
     def update(self):
-        self.rect.x += self.speedx
-        self.rect.y += self.speedy
-        if self.rect.top > HEIGHT + 10 or self.rect.left < -25 or self.rect.right > WIDTH + 20:
-            self.rect.y = random.randrange(-100, -40)
-            self.rect.x = random.randrange(WIDTH - self.rect.width)
-            self.speedy = random.randrange(1, 8)
+        self.rect.move_ip(-self.speed, 0)
+        if self.rect.right < 0:
+            self.rect = self.image.get_rect(
+                center=(
+                    random.randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 100),
+                    random.randint(0, SCREEN_HEIGHT)
+                )
+            )
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
