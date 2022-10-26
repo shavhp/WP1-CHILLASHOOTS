@@ -16,7 +16,7 @@ YELLOW = (255, 255, 0)
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 enemy_timer = 0
-enemySprites = pygame.sprite.RenderPlain(())
+enemySprites = pygame.sprite.Group()
 frame_count = 0
 frame_rate = 60
 start_time = 0
@@ -57,7 +57,7 @@ class Mob(pygame.sprite.Sprite):
                 random.randint(0, SCREEN_HEIGHT)
             )
         )
-        self.speed = random.randint(5, 20)
+        self.speed = random.randint(5, 10)
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)
@@ -136,6 +136,10 @@ while run :
     all_sprites.update()
     hits = pygame.sprite.spritecollide(player, mobs, False)
     if hits:
+        run = False
+    hit = pygame.sprite.spritecollide(player, enemySprites, False)
+    if hit:
+        print('Game Over!')
         run = False
     all_sprites.draw(screen)
     pygame.display.update()
