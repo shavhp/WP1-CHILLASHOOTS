@@ -1,10 +1,9 @@
 import pygame
-from pygame.sprite import Sprite
 import random
 import os
 
 
-class BaseEnemy(Sprite):
+class BaseEnemy(pygame.sprite.Sprite):
     def __init__(
             self,
             enemy_speed_x=random.randint(6, 10),
