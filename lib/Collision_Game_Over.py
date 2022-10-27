@@ -167,6 +167,7 @@ running = True
 while running:
     title()
     sound_maker()
+
     if more_button.draw(CANVAS):
         running = True
         while running:
@@ -251,15 +252,6 @@ while running:
             running = False
 
     pygame.display.update()
-
-
-
-
-
-
-
-
-
 
 endgame = True
 while endgame:
