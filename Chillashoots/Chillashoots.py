@@ -10,20 +10,28 @@ import os
 
 pygame.init()
 
+# Defines width, height and frame rate of game screen
 WIDTH = 800
 HEIGHT = 600
 FPS = 60
 
+# Defines used colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
 GREY = (200, 200, 200)
 
-# Make button
+# Makes buttons for Play and More, defines font for score display
 start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
 more_img = pygame.image.load(os.path.join('../images', 'button_more.png')).convert_alpha()
-
 start_button = Button(250, 300, start_img, 1)
 more_button = Button(460, 430, more_img, 1)
 font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
 
+# Defines high score variables
 high_score = 0
 high_score_file = open("../high_score.txt", "r")
 high_score = int(high_score_file.read())
@@ -35,26 +43,23 @@ HIGH_SCORE = HIGH_SCORE_FONT.render(f'Highscore: {high_score}', True, GREY, None
 HIGH_SCORE_RECT = HIGH_SCORE.get_rect()
 HIGH_SCORE_RECT.center = (SCREEN_WIDTH // 2.3, SCREEN_HEIGHT // 1.30)
 
-# define colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
-GREY = (200, 200, 200)
+# Defines screensize
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
+# Defines timers and groups enemies
 enemy_timer = 0
 bouncer_enemy_timer = 0
 enemySprites = pygame.sprite.Group()
+
+# Defines variables for score tracking
 frame_count = 0
 frame_rate = 60
 start_time = 0
+
+# Defines speed at which player moves when directional keys are pressed
 player_speed = 20
 
-# Calculate total seconds
+# Calculate total seconds that have passed since game started
 total_seconds = frame_count // frame_rate
 
 
@@ -67,7 +72,6 @@ def get_high_score():
         high_score_file = open("../high_score.txt", "r")
         high_score = int(high_score_file.read())
         high_score_file.close()
-
     except IOError:
         # Error reading file, no high score
         print("There is no high score yet.")
@@ -150,16 +154,22 @@ class Mob(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
+        # Loads sprite image
         self.image = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
+        # Gets rectangle of image automatically
         self.rect = self.image.get_rect()
+        # Defines coordinates of sprite spawn position
         self.rect.top = 25
         self.rect.bottom = 320
+        # Defines at which speed the sprite moves
         self.speedx = 1
         self.speedy = 1
 
     def update(self):
+        # Defines movement speed of player sprite before key gets pressed
         self.speedx = 0
         self.speedy = 0
+        # Defines player movement when directional keys are pressed
         userinput = pygame.key.get_pressed()
         if userinput[pygame.K_LEFT]:
             self.speedx = -player_speed
@@ -172,19 +182,18 @@ class Player(pygame.sprite.Sprite):
 
         self.rect.x += self.speedx
         self.rect.y += self.speedy
+
+        # Stops player movement when borders of screen are reached
         if self.rect.right > 800:
             self.rect.right = 800
         if self.rect.left < 0:
             self.rect.left = 0
-
-        # Player stays within the screen boundaries
         if self.rect.x < 0:
             self.rect.x = 0
         elif self.rect.x > 736:
             self.rect.x = 736
         elif self.rect.y < 0:
             self.rect.y = 0
-        # Value of 536 = height of screen - height of sprite (600px - 64px)
         elif self.rect.y > 536:
             self.rect.y = 536
 
@@ -272,7 +281,7 @@ while running:
                 get_high_score()
                 high_score_main()
 
-            # String formatting to format in leading zeros
+            # String formatting to format score counter by +1
             output_time = "Score {0}".format(total_seconds)
 
             # Timer going up
