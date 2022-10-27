@@ -118,6 +118,17 @@ class Player(pygame.sprite.Sprite):
         if self.rect.left < 0:
             self.rect.left = 0
 
+        # Player stays within the screen boundaries
+        if self.rect.x < 0:
+            self.rect.x = 0
+        elif self.rect.x > 736:
+            self.rect.x = 736
+        elif self.rect.y < 0:
+            self.rect.y = 0
+        # Value of 536 = height of screen - height of sprite (600px - 64px)
+        elif self.rect.y > 536:
+            self.rect.y = 536
+
         player_x = self.rect.x
         player_y = self.rect.y
 
