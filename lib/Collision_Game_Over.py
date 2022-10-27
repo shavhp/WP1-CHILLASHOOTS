@@ -26,6 +26,7 @@ all_sprites = pygame.sprite.Group()
 
 # Calculate total seconds
 total_seconds = frame_count // frame_rate
+
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
@@ -70,6 +71,7 @@ class Mob(pygame.sprite.Sprite):
             )
 
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -93,6 +95,7 @@ class Player(pygame.sprite.Sprite):
         if userinput[pygame.K_DOWN]:
             self.speedy = +player_speed
 
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         if self.rect.right > 800:
@@ -100,11 +103,35 @@ class Player(pygame.sprite.Sprite):
         if self.rect.left < 0:
             self.rect.left = 0
 
+        player_x = self.rect.x
+        player_y = self.rect.y
 
+    def shoot(self):
+        bullet = Bullet(self.rect.centerx, self.rect.top)
+        all_sprites.add(bullet)
+        bullets.add(bullet)
+
+
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((30, 10))
+        self.image.fill(YELLOW)
+        self.rect = self.image.get_rect()
+        self.rect.bottom = y + 25
+        self.rect.centerx = x + 30
+        self.speedx =  +10
+
+    def update(self):
+        self.rect.x += self.speedx
+        # kill if it moves off the top of the screen
+        if self.rect.bottom < 0:
+            self.kill()
 
 
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
 for i in range(8):
@@ -116,12 +143,16 @@ def quit_game():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                player.shoot()
 
 run = True
 while run :
     quit_game()
     screen.fill((255,255,255))
     # Diagonal movement makes sprite disappear in corners
+
 
 
 
@@ -134,6 +165,13 @@ while run :
 
     pygame.time.delay(30)
     all_sprites.update()
+
+    hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
+    for hit in hits:
+        m = Mob()
+        all_sprites.add(m)
+        mobs.add(m)
+
     hits = pygame.sprite.spritecollide(player, mobs, False)
     if hits:
         run = False
