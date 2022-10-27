@@ -79,8 +79,8 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.top = 25
         self.rect.bottom = 320
-        self.speedx = 0
-        self.speedy = 0
+        self.speedx = 1
+        self.speedy = 1
 
     def update(self):
         self.speedx = 0
@@ -119,7 +119,7 @@ class Bullet(pygame.sprite.Sprite):
         self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
         self.rect.bottom = y + 25
-        self.rect.centerx = x + 30
+        self.rect.centerx = x + 33
         self.speedx =  +10
 
     def update(self):
