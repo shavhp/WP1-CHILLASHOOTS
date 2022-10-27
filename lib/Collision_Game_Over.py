@@ -14,12 +14,11 @@ FPS = 60
 
 # Make button
 start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
-high_score_img = pygame.image.load(os.path.join('../images', 'button_highscore.png')).convert_alpha()
 more_img = pygame.image.load(os.path.join('../images', 'button_more.png')).convert_alpha()
 start_button = Button(250, 300, start_img, 1)
-high_score_button = Button(250, 430, high_score_img, 1)
 more_button = Button(460, 430, more_img, 1)
 font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
+
 # define colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -28,6 +27,7 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 GREY = (200, 200, 200)
+
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 enemy_timer = 0
@@ -190,8 +190,7 @@ while running:
                     running = False
 
             pygame.display.update()
-    if high_score_button.draw(CANVAS):
-        print("NO highscore")
+
     if start_button.draw(CANVAS):
         # Player sprite
         player_sprite(player_x, player_y)
