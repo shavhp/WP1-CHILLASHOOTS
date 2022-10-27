@@ -1,11 +1,25 @@
 import pygame.sprite
-
+from lib.Button import *
+from lib.Setting_menu import *
 from lib.Enemy import *
-from lib.Screen import *
+from lib.Moving_Background_1 import *
+from lib.Sound import sound_maker
+from lib.Player import *
+from lib.Setting_menu import setting_page
+import os
+pygame.init()
 WIDTH = 800
 HEIGHT = 600
 FPS = 60
 
+# Make button
+start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
+high_score_img = pygame.image.load(os.path.join('../images', 'button_highscore.png')).convert_alpha()
+more_img = pygame.image.load(os.path.join('../images', 'button_more.png')).convert_alpha()
+start_button = Button(250, 300, start_img, 1)
+high_score_button = Button(250, 430, high_score_img, 1)
+more_button = Button(460, 430, more_img, 1)
+font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
 # define colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -13,6 +27,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+GREY = (200, 200, 200)
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 enemy_timer = 0
@@ -147,37 +162,112 @@ def quit_game():
             if event.key == pygame.K_SPACE:
                 player.shoot()
 
-run = True
-while run :
-    quit_game()
-    screen.fill((255,255,255))
-    # Diagonal movement makes sprite disappear in corners
+
+running = True
+while running:
+    title()
+    sound_maker()
+    if more_button.draw(CANVAS):
+        running = True
+        while running:
+            setting_page()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    running = False
+
+                if event.type == pygame.QUIT:
+                    running = False
+
+            pygame.display.update()
+    if high_score_button.draw(CANVAS):
+        print("NO highscore")
+    if start_button.draw(CANVAS):
+        # Player sprite
+        player_sprite(player_x, player_y)
+        run = True
+        scroll = 0
+        while run :
+            quit_game()
+            # Gets drawn first
+            # Background image and coordinates of image appearance
+            CANVAS.blit(BACKGROUND, (0, 0))
+            clock.tick(FPS)
+            for i in range(0, tiles):
+                screen.blit(bg, (i * bg_width + scroll, 0))
+            scroll -= 10
+            if abs(scroll) > bg_width:
+                scroll = 0
+
+            # String formatting to format in leading zeros
+            output_time = "Score {0}".format(total_seconds)
+
+            # Timer going up
+            total_seconds = start_time + (frame_count // frame_rate)
+
+            # Increase frame count
+            frame_count += 22
+
+            # Limit frames per second
+            clock.tick(frame_rate)
+
+            # Blit score to the screen
+            text_score = font_score.render(output_time, True, GREY)
+            CANVAS.blit(text_score, [650, 25])
+
+            # Enemy timer
+            enemySprites.update(CANVAS)
+            enemy_timer += 1
+            if enemy_timer == 50:
+                enemySprites.add(BaseEnemy(random.randint(2, 2)))
+                enemy_timer = 0
+
+            pygame.time.delay(30)
+            all_sprites.update()
+
+            hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
+            for hit in hits:
+                m = Mob()
+                all_sprites.add(m)
+                mobs.add(m)
+            hit = pygame.sprite.groupcollide(enemySprites, bullets, True, True)
+
+            hits = pygame.sprite.spritecollide(player, mobs, False)
+            if hits:
+                run = False
+                running = False
+
+            hit = pygame.sprite.spritecollide(player, enemySprites, False)
+            if hit:
+                run = False
+                running = False
+            all_sprites.draw(screen)
+            pygame.display.update()
+
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            running = False
+
+        if event.type == pygame.QUIT:
+            running = False
+
+    pygame.display.update()
 
 
 
 
-    # Enemy timer
-    enemySprites.update(CANVAS)
-    enemy_timer += 1
-    if enemy_timer == 50:
-        enemySprites.add(BaseEnemy(random.randint(2, 2)))
-        enemy_timer = 0
 
-    pygame.time.delay(30)
-    all_sprites.update()
 
-    hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
-    for hit in hits:
-        m = Mob()
-        all_sprites.add(m)
-        mobs.add(m)
 
-    hits = pygame.sprite.spritecollide(player, mobs, False)
-    if hits:
-        run = False
-    hit = pygame.sprite.spritecollide(player, enemySprites, False)
-    if hit:
-        print('Game Over!')
-        run = False
-    all_sprites.draw(screen)
+
+
+
+endgame = True
+while endgame:
+    Game_Over()
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            endgame = False
+
+        if event.type == pygame.QUIT:
+           endgame = False
     pygame.display.update()

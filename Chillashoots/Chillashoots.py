@@ -180,6 +180,10 @@ while running:
                     enemySprites.add(Bouncer(10))
                     bouncer_enemy_timer = 0
 
+            # Increase spawn frequency of existing timer
+            if total_seconds >= 400:
+                enemy_timer += 1
+
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     running = False
