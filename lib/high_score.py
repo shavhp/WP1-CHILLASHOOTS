@@ -1,5 +1,4 @@
-from lib.Setting_menu import *
-
+'''
 
 def get_high_score():
     # Default high score
@@ -31,14 +30,13 @@ def save_high_score(new_high_score):
         print("Unable to save high score.")
 
 def highscore_main():
-    ''' Main program here '''
+
     # Get high score
     high_score = get_high_score()
 
     # Get score from current game
     global current_score
-
-    current_score = 1000
+    current_score = total_seconds
 
     # See if we have a new high score
     if current_score > high_score:
@@ -60,3 +58,4 @@ if __name__ == "__Chillashoots__":
     get_high_score()
     save_high_score()
     highscore_main()
+'''

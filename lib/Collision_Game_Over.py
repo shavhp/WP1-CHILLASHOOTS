@@ -8,16 +8,26 @@ from lib.Player import *
 from lib.Setting_menu import setting_page
 import os
 pygame.init()
+
 WIDTH = 800
 HEIGHT = 600
 FPS = 60
 
+GREY = (200, 200, 200)
+
 # Make button
 start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
 more_img = pygame.image.load(os.path.join('../images', 'button_more.png')).convert_alpha()
+
 start_button = Button(250, 300, start_img, 1)
 more_button = Button(460, 430, more_img, 1)
 font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
+
+HIGH_SCORE_FONT = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 28)
+HIGH_SCORE = HIGH_SCORE_FONT.render('Highscore:', True, GREY, None)
+
+HIGH_SCORE_RECT = HIGH_SCORE.get_rect()
+HIGH_SCORE_RECT.center = (SCREEN_WIDTH // 2.3, SCREEN_HEIGHT // 1.30)
 
 # define colors
 WHITE = (255, 255, 255)
@@ -41,6 +51,49 @@ all_sprites = pygame.sprite.Group()
 
 # Calculate total seconds
 total_seconds = frame_count // frame_rate
+
+def get_high_score():
+    # Default high score
+    high_score = 0
+
+    # Try to read high score from file
+    try:
+        high_score_file = open("../high_score.txt", "r")
+        high_score = int(high_score_file.read())
+        high_score_file.close()
+        print(high_score)
+
+    except IOError:
+        # Error reading file, no high score
+        print("There is no high score yet.")
+    except ValueError:
+        # There is a file, but we don't understand the number
+        print("I'm confused. Starting with no high score.")
+
+    return high_score
+
+def save_high_score(new_high_score):
+    try:
+        # Write file to disk
+        high_score_file = open("../high_score.txt", "w")
+        high_score_file.write(str(new_high_score))
+        high_score_file.close()
+    except IOError:
+        # Can't write it
+        print("Unable to save high score.")
+
+def high_score_main():
+    ''' Main program here '''
+    # Get high score
+    high_score = get_high_score()
+
+    # Get score from current game
+    current_score = total_seconds
+
+    # See if we have a new high score
+    if current_score > high_score:
+        # There is a new high score, save to disk
+        save_high_score(current_score)
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
@@ -155,6 +208,7 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()
 
 
+
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
@@ -178,6 +232,7 @@ running = True
 while running:
     title()
     sound_maker()
+    CANVAS.blit(HIGH_SCORE, HIGH_SCORE_RECT)
     if more_button.draw(CANVAS):
         running = True
         while running:
@@ -190,6 +245,8 @@ while running:
                     running = False
 
             pygame.display.update()
+
+
 
     if start_button.draw(CANVAS):
         # Player sprite
@@ -207,6 +264,11 @@ while running:
             scroll -= 10
             if abs(scroll) > bg_width:
                 scroll = 0
+
+            test = 0
+            if test == 0:
+                get_high_score()
+                high_score_main()
 
             # String formatting to format in leading zeros
             output_time = "Score {0}".format(total_seconds)
@@ -252,6 +314,8 @@ while running:
                 running = False
             all_sprites.draw(screen)
             pygame.display.update()
+
+
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:

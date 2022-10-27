@@ -6,7 +6,6 @@ from lib.Sound import sound_maker
 from lib.Player import *
 # from lib.Title import *
 from lib.Setting_menu import setting_page
-from lib.high_score import *
 import os
 
 # Initializes pygame library
