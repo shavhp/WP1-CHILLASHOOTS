@@ -4,8 +4,8 @@ from lib.Enemy import *
 from lib.Moving_Background_1 import *
 from lib.Sound import sound_maker
 from lib.Player import *
+# from lib.Title import *
 from lib.Setting_menu import setting_page
-from lib.high_score import *
 import os
 
 # Initializes pygame library
@@ -13,10 +13,8 @@ pygame.init()
 
 # Make button
 start_img = pygame.image.load(os.path.join('../images', 'button_start.png')).convert_alpha()
-high_score_img = pygame.image.load(os.path.join('../images', 'button_highscore.png')).convert_alpha()
 more_img = pygame.image.load(os.path.join('../images', 'button_more.png')).convert_alpha()
 start_button = Button(250, 300, start_img, 1)
-high_score_button = Button(250, 430, high_score_img, 1)
 more_button = Button(460, 430, more_img, 1)
 
 # Define colors
@@ -105,7 +103,7 @@ def high_score_main():
 def fire_bullet(x, y):
     global bullet_state
     bullet_state = "fire"
-    CANVAS.blit(bulletImg, ( x + 50 , y + 10 ))
+    CANVAS.blit(bulletImg, (x + 50, y + 10 ))
 
 # Main event loop, contains everything that has to stay infinitely consistent
 running = True
@@ -124,8 +122,8 @@ while running:
                     running = False
 
             pygame.display.update()
-    if high_score_button.draw(CANVAS):
-        print("NO highscore")
+    # if high_score_button.draw(CANVAS):
+       # print("NO highscore")
     if start_button.draw(CANVAS):
 
         # Player sprite
