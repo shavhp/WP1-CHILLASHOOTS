@@ -47,6 +47,7 @@ GREY = (200, 200, 200)
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 enemy_timer = 0
+bouncer_enemy_timer = 0
 enemySprites = pygame.sprite.Group()
 frame_count = 0
 frame_rate = 60
@@ -289,12 +290,26 @@ while running:
             text_score = font_score.render(output_time, True, GREY)
             CANVAS.blit(text_score, [650, 25])
 
-            # Enemy timer
+            # Spawning enemies
             enemySprites.update(CANVAS)
             enemy_timer += 1
-            if enemy_timer == 50:
-                enemySprites.add(BaseEnemy(random.randint(2, 2)))
+            if enemy_timer == 30:
+                enemySprites.add(Upper(random.randint(7, 12)))
+                enemySprites.add(Lower(random.randint(7, 12)))
+            elif enemy_timer >= 60:
+                enemySprites.add(BaseEnemy(random.randint(8, 12)))
                 enemy_timer = 0
+
+            # Time-triggered enemy spawning
+            if total_seconds >= 200:
+                bouncer_enemy_timer += 1
+                if bouncer_enemy_timer == 90:
+                    enemySprites.add(Bouncer(10))
+                    bouncer_enemy_timer = 0
+
+            # Increase spawn frequency of existing timer
+            if total_seconds >= 400:
+                enemy_timer += 1
 
             pygame.time.delay(30)
             all_sprites.update()
