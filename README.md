@@ -28,11 +28,13 @@ Stap 6 : Klik op de groene knop "Code", aan de rechterkant, en klik op "Download
 
 Stap 7 : Pak het zipbestand uit.
 
-Stap 8 : Dubbelklik op het bestand main.py.
+Stap 8 : Open de map 'Chillashoots'.
 
-Stap 9 : Klik op PLAY om de game te starten.
+Stap 9 : Open het bestand 'Chillashoots.py'.
 
-Stap 10 : Druk op Esc op je toetsenbord om het spel te verlaten.
+Stap 10 : Klik op PLAY om de game te starten.
+
+Stap 11 : Druk op Esc op je toetsenbord om het spel te verlaten.
 
 '''
 
