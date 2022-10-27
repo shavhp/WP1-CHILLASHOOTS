@@ -7,6 +7,7 @@ from lib.Sound import sound_maker
 from lib.Player import *
 from lib.Setting_menu import setting_page
 import os
+
 pygame.init()
 
 WIDTH = 800
@@ -52,10 +53,9 @@ frame_rate = 60
 start_time = 0
 player_speed = 20
 
-all_sprites = pygame.sprite.Group()
-
 # Calculate total seconds
 total_seconds = frame_count // frame_rate
+
 
 def get_high_score():
     # Default high score
@@ -77,6 +77,7 @@ def get_high_score():
 
     return high_score
 
+
 def save_high_score(new_high_score):
     try:
         # Write file to disk
@@ -86,6 +87,7 @@ def save_high_score(new_high_score):
     except IOError:
         # Can't write it
         print("Unable to save high score.")
+
 
 def high_score_main():
     ''' Main program here '''
@@ -99,6 +101,7 @@ def high_score_main():
     if current_score > high_score:
         # There is a new high score, save to disk
         save_high_score(current_score)
+
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
@@ -119,6 +122,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.move_ip(-self.speed, 0)
         if self.rect.right < 0:
             self.kill()
+
 
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
@@ -144,7 +148,6 @@ class Mob(pygame.sprite.Sprite):
             )
 
 
-
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -168,7 +171,6 @@ class Player(pygame.sprite.Sprite):
         if userinput[pygame.K_DOWN]:
             self.speedy = +player_speed
 
-
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         if self.rect.right > 800:
@@ -187,9 +189,6 @@ class Player(pygame.sprite.Sprite):
         elif self.rect.y > 536:
             self.rect.y = 536
 
-        player_x = self.rect.x
-        player_y = self.rect.y
-
     def shoot(self):
         bullet = Bullet(self.rect.centerx, self.rect.top)
         all_sprites.add(bullet)
@@ -204,14 +203,13 @@ class Bullet(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.bottom = y + 25
         self.rect.centerx = x + 33
-        self.speedx =  +10
+        self.speedx = +10
 
     def update(self):
         self.rect.x += self.speedx
         # kill if it moves off the top of the screen
         if self.rect.bottom < 0:
             self.kill()
-
 
 
 all_sprites = pygame.sprite.Group()
@@ -223,6 +221,8 @@ for i in range(8):
     m = Mob()
     all_sprites.add(m)
     mobs.add(m)
+
+
 def quit_game():
     global run
     for event in pygame.event.get():
@@ -251,14 +251,12 @@ while running:
 
             pygame.display.update()
 
-
-
     if start_button.draw(CANVAS):
         # Player sprite
         player_sprite(player_x, player_y)
         run = True
         scroll = 0
-        while run :
+        while run:
             quit_game()
             # Gets drawn first
             # Background image and coordinates of image appearance
@@ -320,8 +318,6 @@ while running:
             all_sprites.draw(screen)
             pygame.display.update()
 
-
-
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             running = False
@@ -330,7 +326,6 @@ while running:
             running = False
 
     pygame.display.update()
-
 
 if run == False:
     endgame = True
