@@ -4,7 +4,7 @@ Ontwikkeld met Pygame.
 
 In CHILLASHOOTS ben jij Chilla: een chinchilla die door de ruimte vliegt.
 
-Met zijn laserogen bestrijdt hij zijn natuurlijke vijanden: aliengeesten en alienduiven.
+Met zijn laserogen bestrijdt hij zijn natuurlijke vijanden: aliengeesten en asteroïden.
 
 Het doel is om zo lang mogelijk in leven te blijven terwijl er steeds meer vijanden op je afkomen.
 
@@ -20,11 +20,11 @@ Stap 2 : Klik op het bestand dat je hebt gedownload. Tijdens het installeren van
 
 Stap 3 : Open de Opdrachtprompt/terminal. Deze kun je vinden via je Windows zoekbalk.
 
-Stap 4 : Type <pip install pygame> en druk op Enter.
+Stap 4 : Type 'pip install pygame' en druk op Enter.
 
 Stap 5 : Ga vervolgens naar https://github.com/Rac-Software-Development/werkplaats-1-pygame-chillabeas.
 
-Stap 6 : Klik op de groene knop "Code", aan de rechterkant, en klik op "Download ZIP".
+Stap 6 : Klik op de groene knop "Code" aan de rechterkant en klik op "Download ZIP".
 
 Stap 7 : Pak het zipbestand uit.
 
