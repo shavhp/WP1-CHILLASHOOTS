@@ -1,6 +1,6 @@
 import pygame.sprite
 
-from lib.Enemy import *
+from lib.Enemy import  *
 from lib.Screen import *
 WIDTH = 800
 HEIGHT = 600
@@ -171,6 +171,7 @@ while run :
         m = Mob()
         all_sprites.add(m)
         mobs.add(m)
+    hit = pygame.sprite.groupcollide(enemySprites, bullets, True, True)
 
     hits = pygame.sprite.spritecollide(player, mobs, False)
     if hits:
