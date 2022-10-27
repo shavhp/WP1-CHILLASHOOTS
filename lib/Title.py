@@ -7,12 +7,12 @@ BACKGROUND = pygame.image.load('../images/background-galaxy.jpg')
 def title():
     # Font and color of title
     title_font = pygame.font.Font('../fonts/gametitle_04B_30__.ttf', 60)
-    GREY = (200, 200, 200)
-    BLACK = (0, 0, 0)
+    grey = (200, 200, 200)
+    black = (0, 0, 0)
 
     # Create text surface object
-    title_1 = title_font.render('CHILLA', True, GREY, None)
-    title_2 = title_font.render('SHOOTS', True, BLACK, None)
+    title_1 = title_font.render('CHILLA', True, grey, None)
+    title_2 = title_font.render('SHOOTS', True, black, None)
 
     # Create rectangular object for text surface object
     title_rect_1 = title_1.get_rect()
