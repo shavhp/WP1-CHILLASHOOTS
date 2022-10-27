@@ -1,10 +1,9 @@
 import pygame
-from pygame.sprite import Sprite
 import random
 import os
 
 
-class BaseEnemy(Sprite):
+class BaseEnemy(pygame.sprite.Sprite):
     def __init__(
             self,
             enemy_speed_x=random.randint(6, 10),
@@ -106,10 +105,10 @@ class Upper(BaseEnemy):
         self.rect.y = y_start
 
     def bounce_if_required(self, screen_width, screen_height):
-        # Enemy reverses when hitting the top side of the display.
+        # Enemy bounces down when hitting the top side of the display.
         if self.rect.top <= 0:
             self.current_speed[1] = self.enemy_speed_y
-        # Enemy reverses when hitting the bottom side of the display.
+        # Enemy bounces up when hitting the middle of the display.
         elif self.rect.bottom >= 300:
             self.current_speed[1] = -self.enemy_speed_y
 
@@ -137,10 +136,10 @@ class Lower(BaseEnemy):
         self.rect.y = y_start
 
     def bounce_if_required(self, screen_width, screen_height):
-        # Enemy reverses when hitting the top side of the display.
+        # Enemy bounces down when hitting the middle of the display.
         if self.rect.top <= 300:
             self.current_speed[1] = self.enemy_speed_y
-        # Enemy reverses when hitting the bottom side of the display.
+        # Enemy bounces up when hitting the bottom side of the display.
         elif self.rect.bottom >= screen_height:
             self.current_speed[1] = -self.enemy_speed_y
 

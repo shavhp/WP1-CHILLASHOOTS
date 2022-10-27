@@ -2,6 +2,7 @@ from lib.Screen import *
 import pygame
 import os
 
+
 player_x = 25
 player_y = 320
 player_x_change = 0
@@ -12,6 +13,50 @@ def player_sprite(x, y):
     # Creates function for player to draw image of sprite icon on given coordinates
     # rect_of_chinchilla_sprite = player_img.get_rect()
     CANVAS.blit(player_img, (x, y))
+
+
+# Incomplete merging
+'''player_x = 25
+player_y = 320
+player_speed = 20
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(os.path.join('../images', 'chinchilla_sprite_light.png'))
+        self.rect = self.image.get_rect()
+        self.rect.top = player_x
+        self.rect.bottom = player_y
+        self.speed_x = 0
+        self.speed_y = 0
+
+    def update(self):
+        self.speed_x = 0
+        self.speed_y = 0
+        userinput = pygame.key.get_pressed()
+        if userinput[pygame.K_LEFT]:
+            self.speed_x = -player_speed
+        if userinput[pygame.K_RIGHT]:
+            self.speed_x = +player_speed
+        if userinput[pygame.K_UP]:
+            self.speed_y = -player_speed
+        if userinput[pygame.K_DOWN]:
+            self.speed_y = +player_speed
+
+        self.rect.x += self.speed_x
+        self.rect.y += self.speed_y
+        if self.rect.right > 800:
+            self.rect.right = 800
+        if self.rect.left < 0:
+            self.rect.left = 0
+
+class Bullet(pygame.sprite.Sprite)
+    bulletImg = pygame.image.load('../images/bullet.png')
+    bulletX = player_x
+    bulletY = player_y
+    bulletX_change = 50
+    bulletY_change = 0
+    bullet_state = "ready"'''
+
 
 
 '''def player_move():
