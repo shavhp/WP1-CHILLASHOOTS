@@ -182,7 +182,6 @@ while running:
     if high_score_button.draw(CANVAS):
         print("NO highscore")
     if start_button.draw(CANVAS):
-
         # Player sprite
         player_sprite(player_x, player_y)
         run = True
@@ -235,9 +234,12 @@ while running:
             hits = pygame.sprite.spritecollide(player, mobs, False)
             if hits:
                 run = False
+                running = False
+
             hit = pygame.sprite.spritecollide(player, enemySprites, False)
             if hit:
                 run = False
+                running = False
             all_sprites.draw(screen)
             pygame.display.update()
 
