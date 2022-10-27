@@ -9,9 +9,9 @@ pygame.display.set_caption("Werkplaats 1: PyGame")
 
 # Show background image
 BACKGROUND = pygame.image.load('images/background-galaxy.jpg')
-Setting_text = pygame.image.load('images/Puple_settings.png')
-Credits_text = pygame.image.load('images/Credits.png')
-Controls_text = pygame.image.load('images/Controls.png')
+Setting_text = pygame.image.load('images/button_more.png')
+Credits_text = pygame.image.load('images/button_more.png')
+Controls_text = pygame.image.load('images/button_more.png')
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 BACKGROUND_COLOR = (0, 0, 0)

@@ -30,7 +30,7 @@ high_score = int(high_score_file.read())
 high_score_file.close()
 
 HIGH_SCORE_FONT = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 28)
-HIGH_SCORE = HIGH_SCORE_FONT.render(f'Highscore:{high_score}', True, GREY, None)
+HIGH_SCORE = HIGH_SCORE_FONT.render(f'Highscore: {high_score}', True, GREY, None)
 
 HIGH_SCORE_RECT = HIGH_SCORE.get_rect()
 HIGH_SCORE_RECT.center = (SCREEN_WIDTH // 2.3, SCREEN_HEIGHT // 1.30)
@@ -90,7 +90,6 @@ def save_high_score(new_high_score):
 
 
 def high_score_main():
-    ''' Main program here '''
     # Get high score
     high_score = get_high_score()
 
@@ -341,10 +340,10 @@ while running:
 
     pygame.display.update()
 
-if run == False:
+if not run:
     endgame = True
     while endgame:
-        Game_Over()
+        game_over()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 endgame = False

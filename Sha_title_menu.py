@@ -34,7 +34,7 @@ TITLE_RECT_2.center = (SCREEN_WIDTH // 1.39, SCREEN_HEIGHT // 3)
 
 # Title and Icon
 pygame.display.set_caption("ChillaShoots")
-icon = pygame.image.load(os.path.join('images', 'chinchilla_icon_sha.png'))
+icon = pygame.image.load(os.path.join('images', 'chinchilla_icon.png'))
 pygame.display.set_icon(icon)
 
 # Main event loop, contains everything that has to stay infinitely consistent

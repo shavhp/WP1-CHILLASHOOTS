@@ -19,7 +19,7 @@ def setting_page():
 
     # Title and Icon
     pygame.display.set_caption("ChillaShoots")
-    icon = pygame.image.load('../images/chinchilla_icon_sha.png')
+    icon = pygame.image.load('../images/chinchilla_icon.png')
     pygame.display.set_icon(icon)
 
     # Gets drawn first

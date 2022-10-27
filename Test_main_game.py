@@ -22,7 +22,7 @@ BACKGROUND = pygame.image.load(os.path.join('images', 'background-galaxy.jpg'))
 
 # Title and Icon
 pygame.display.set_caption("ChillaShoots")
-icon = pygame.image.load(os.path.join('images', 'chinchilla_icon_sha.png'))
+icon = pygame.image.load(os.path.join('images', 'chinchilla_icon.png'))
 pygame.display.set_icon(icon)
 
 player_x = 25
