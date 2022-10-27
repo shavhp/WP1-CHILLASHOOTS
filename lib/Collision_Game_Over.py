@@ -294,22 +294,22 @@ while running:
             enemySprites.update(CANVAS)
             enemy_timer += 1
             if enemy_timer == 30:
-                enemySprites.add(Upper(random.randint(7, 12)))
-                enemySprites.add(Lower(random.randint(7, 12)))
+                enemySprites.add(Upper(random.randint(6, 12)))
+                enemySprites.add(Lower(random.randint(6, 12)))
             elif enemy_timer >= 60:
                 enemySprites.add(BaseEnemy(random.randint(8, 12)))
                 enemy_timer = 0
 
-            # Time-triggered enemy spawning
+            # Increase spawn frequency of existing timer
             if total_seconds >= 200:
+                enemy_timer += 1
+
+            # Time-triggered enemy spawning
+            if total_seconds >= 400:
                 bouncer_enemy_timer += 1
                 if bouncer_enemy_timer == 90:
                     enemySprites.add(Bouncer(10))
                     bouncer_enemy_timer = 0
-
-            # Increase spawn frequency of existing timer
-            if total_seconds >= 400:
-                enemy_timer += 1
 
             pygame.time.delay(30)
             all_sprites.update()
