@@ -57,7 +57,7 @@ frame_rate = 60
 start_time = 0
 
 # Defines speed at which player moves when directional keys are pressed
-player_speed = 20
+player_speed = 15
 
 # Calculate total seconds that have passed since game started
 total_seconds = frame_count // frame_rate
