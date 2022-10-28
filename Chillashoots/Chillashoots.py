@@ -290,7 +290,7 @@ while running:
                 enemy_timer += 1
 
             # Time-triggered enemy spawning
-            if total_seconds >= 1000:
+            if total_seconds >= 910:
                 bouncer_enemy_timer += 1
                 if bouncer_enemy_timer == 90:
                     enemySprites.add(Bouncer(10))
