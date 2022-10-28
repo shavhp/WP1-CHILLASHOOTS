@@ -286,11 +286,11 @@ while running:
                 enemy_timer = 0
 
             # Increase spawn frequency of existing timer
-            if total_seconds >= 200:
+            if total_seconds >= 500:
                 enemy_timer += 1
 
             # Time-triggered enemy spawning
-            if total_seconds >= 400:
+            if total_seconds >= 1000:
                 bouncer_enemy_timer += 1
                 if bouncer_enemy_timer == 90:
                     enemySprites.add(Bouncer(10))
