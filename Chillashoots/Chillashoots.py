@@ -33,7 +33,6 @@ font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
 font_score_gamov = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 50)
 
 # Defines high score variables
-high_score = 0
 high_score_file = open("../high_score.txt", "r")
 high_score = int(high_score_file.read())
 high_score_file.close()
@@ -105,27 +104,6 @@ def high_score_main():
     if current_score > high_score:
         # There is a new high score, save to disk
         save_high_score(current_score)
-
-
-class Enemy(pygame.sprite.Sprite):
-    def __init__(self):
-        super(Enemy, self).__init__()
-        self.surf = pygame.image.load(os.path.join('../images', 'ghost.png'))
-        # The starting position is randomly generated, as is the speed
-        self.rect = self.surf.get_rect(
-            center=(
-                random.randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 100),
-                random.randint(0, SCREEN_HEIGHT),
-            )
-        )
-        self.speed = random.randint(5, 20)
-
-    # Move the enemy based on speed
-    # Remove it when it passes the left edge of the screen
-    def update(self):
-        self.rect.move_ip(-self.speed, 0)
-        if self.rect.right < 0:
-            self.kill()
 
 
 class Mob(pygame.sprite.Sprite):

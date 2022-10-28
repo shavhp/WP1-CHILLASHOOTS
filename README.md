@@ -4,7 +4,7 @@ Ontwikkeld met Pygame.
 
 In CHILLASHOOTS ben jij Chilla: een chinchilla die door de ruimte vliegt.
 
-Met zijn laserogen bestrijdt hij zijn natuurlijke vijanden: aliengeesten en asteroïden.
+Met zijn laserogen bestrijdt hij zijn natuurlijke vijanden: aliengeesten, alienduiven en asteroïden.
 
 Het doel is om zo lang mogelijk in leven te blijven terwijl er steeds meer vijanden op je afkomen.
 
