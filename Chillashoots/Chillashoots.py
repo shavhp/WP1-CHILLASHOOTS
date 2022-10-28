@@ -278,10 +278,10 @@ while running:
             # Spawning enemies
             enemySprites.update(CANVAS)
             enemy_timer += 1
-            if enemy_timer == 30:
+            if enemy_timer == 40:
                 enemySprites.add(Upper(random.randint(6, 10)))
                 enemySprites.add(Lower(random.randint(6, 10)))
-            elif enemy_timer >= 60:
+            elif enemy_timer >= 70:
                 enemySprites.add(BaseEnemy(random.randint(8, 12)))
                 enemy_timer = 0
 
