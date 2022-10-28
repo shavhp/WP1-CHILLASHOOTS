@@ -8,7 +8,7 @@ def game_over():
 
     # Create text surface object
     title_1 = title_font.render('GAME', True, red, None)
-    title_2 = title_font.render('OVER!!!', True, red, None)
+    title_2 = title_font.render('OVER', True, red, None)
 
     # Create rectangular object for text surface object
     title_rect_1 = title_1.get_rect()

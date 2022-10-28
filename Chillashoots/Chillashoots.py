@@ -30,6 +30,7 @@ more_img = pygame.image.load(os.path.join('../images', 'button_more.png')).conve
 start_button = Button(250, 300, start_img, 1)
 more_button = Button(460, 430, more_img, 1)
 font_score = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 25)
+font_score_gamov = pygame.font.Font('../fonts/superstar_memesbruh03.ttf', 50)
 
 # Defines high score variables
 high_score = 0
@@ -352,6 +353,10 @@ if not run:
     endgame = True
     while endgame:
         game_over()
+        text_score_rect = text_score.get_rect()
+        text_score_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+        text_score = font_score_gamov.render(output_time, True, BLACK)
+        CANVAS.blit(text_score, text_score_rect)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 endgame = False
